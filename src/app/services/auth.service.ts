@@ -20,4 +20,8 @@ export class AuthService {
   public logOut(): void {
     this._user = undefined;
   }
+
+  public isLoggedIn(): boolean {
+    return this._user != undefined;
+  }
 }
