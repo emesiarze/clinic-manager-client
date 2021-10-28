@@ -8,12 +8,14 @@ import { LoginComponent } from './pages/login/login.component';
 import { CommonMaterialModule } from './common-material.module';
 import { CommonFormsModule } from './common-forms.module';
 import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './pages/home/home.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
