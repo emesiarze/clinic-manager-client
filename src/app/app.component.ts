@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {AuthService} from "./services/auth.service";
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'cinema-manager-client';
+  constructor(private _authService: AuthService) { }
+
+  public isLoggedIn(): boolean {
+    return this._authService.isLoggedIn();
+  }
+
+  public isAdmin(): boolean {
+    return this._authService.isAdmin();
+  }
 }

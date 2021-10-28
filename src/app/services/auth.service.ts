@@ -24,4 +24,8 @@ export class AuthService {
   public isLoggedIn(): boolean {
     return this._user != undefined;
   }
+
+  public isAdmin(): boolean {
+    return this.isLoggedIn() && this.user!.isWorker;
+  }
 }

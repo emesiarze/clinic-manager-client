@@ -1,1 +1,21 @@
-<router-outlet></router-outlet>
+<div class="app-wrapper">
+  <mat-toolbar *ngIf="isLoggedIn()">
+    <h1>Rezerwacja seansów</h1>
+
+    <nav>
+      <ng-container *ngIf="isAdmin()">
+        <!--      <button mat-button [matMenuTriggerFor]="'menu'">Akcje pracownika<mat-icon></mat-icon> Zarządzaj seansami</button>-->
+        <a mat-button [routerLink]="['/manage-seanses']"><mat-icon>live_tv</mat-icon> Zarządzaj seansami</a>
+        <a mat-button [routerLink]="['/manage-movies']"><mat-icon>movie</mat-icon> Zarządzaj filmami</a>
+        <a mat-button [routerLink]="['/manage-halls']"><mat-icon>meeting_room</mat-icon> Zadządzaj salami</a>
+        <a mat-button [routerLink]="['/manage-users']"><mat-icon>people</mat-icon> Zarządzaj użytkownikami</a>
+      </ng-container>
+
+      <ng-container *ngIf="!isAdmin()">
+        <a mat-button [routerLink]="['/seanse-selection']"><mat-icon>live_tv</mat-icon> Wybierz seans</a>
+        <a mat-button [routerLink]="['/manage-profile']"><mat-icon>account_circle</mat-icon>Edytuj profil</a>
+      </ng-container>
+    </nav>
+  </mat-toolbar>
+  <router-outlet></router-outlet>
+</div>
