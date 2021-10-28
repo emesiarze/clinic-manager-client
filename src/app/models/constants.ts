@@ -1,0 +1,6 @@
+// Snack bars durations
+export const ACTION_SNACKBAR_DURATION = 5000;
+export const SUCCESS_SNACKBAR_DURATION = 3000;
+export const INFO_SNACKBAR_DURATION = 3000;
+export const WARNING_SNACKBAR_DURATION = 3000;
+export const ERROR_SNACKBAR_DURATION = 0;

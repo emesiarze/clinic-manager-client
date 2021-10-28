@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatInputModule,
     MatDividerModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    MatSnackBarModule
   ],
   exports: [
     MatCardModule,
@@ -24,7 +26,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatInputModule,
     MatDividerModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    MatSnackBarModule
   ]
 })
 export class CommonMaterialModule { }

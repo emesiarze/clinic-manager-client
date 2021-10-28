@@ -1,0 +1,54 @@
+@import '../../../../variables';
+
+.container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  mat-icon:not(:last-child) {
+    margin-right: $icon-margin;
+  }
+
+  p {
+    flex: 1 1;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0;
+    
+    span {
+      flex: 1 1;
+
+      &.snackbar__details {
+        font-size: .8em;
+      }
+    }
+  }
+
+  button {
+    margin-left: $spacing-small;
+  }
+  
+  &.info {
+    mat-icon:not(:last-child) {
+      color: $text-white;
+    }
+  }
+
+  &.success {
+    mat-icon:not(:last-child) {
+      color: $color-green;
+    }
+  }
+
+  &.warning {
+    mat-icon:not(:last-child) {
+      color: $color-orange;
+    }
+  }
+
+  &.error {
+    mat-icon:not(:last-child) {
+      color: $color-red;
+    }
+  }
+}
