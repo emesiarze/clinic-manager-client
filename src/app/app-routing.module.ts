@@ -10,11 +10,13 @@ import {ManageSeansesComponent} from "./pages/manage-seanses/manage-seanses.comp
 import {ManageMoviesComponent} from "./pages/manage-movies/manage-movies.component";
 import {SeanseSelectionComponent} from "./pages/seanse-selection/seanse-selection.component";
 import {ManageProfileComponent} from "./pages/manage-profile/manage-profile.component";
+import {LoginGuard} from "./services/login.guard";
 
 const routes: Routes = [
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    canActivate: [LoginGuard]
   },
   {
     path: 'home',
