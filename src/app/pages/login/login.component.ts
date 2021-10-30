@@ -27,9 +27,11 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  onSubmit(): void {
-    const login = this.loginForm.get('login')!.value;
-    const password = this.loginForm.get('password')!.value;
-    this._loginService.login(login, password);
+  login(): void {
+    if (this._loginForm.valid) {
+      const login = this.loginForm.get('login')!.value;
+      const password = this.loginForm.get('password')!.value;
+      this._loginService.login(login, password);
+    }
   }
 }
