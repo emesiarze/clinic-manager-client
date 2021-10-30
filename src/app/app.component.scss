@@ -1,14 +1,27 @@
 .app-wrapper {
+  display: flex;
+}
+
+mat-toolbar {
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+main {
   position: absolute;
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
-}
 
-mat-toolbar {
-  display: flex;
-  justify-content: space-between;
+  min-height: 100%;
+  padding: 80px 32px 16px 32px;
 }
 
 router-outlet {

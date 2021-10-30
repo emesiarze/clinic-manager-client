@@ -4,18 +4,24 @@
 
     <nav>
       <ng-container *ngIf="isAdmin()">
-        <!--      <button mat-button [matMenuTriggerFor]="'menu'">Akcje pracownika<mat-icon></mat-icon> Zarządzaj seansami</button>-->
-        <a mat-button [routerLink]="['/manage-seanses']"><mat-icon>live_tv</mat-icon> Zarządzaj seansami</a>
-        <a mat-button [routerLink]="['/manage-movies']"><mat-icon>movie</mat-icon> Zarządzaj filmami</a>
-        <a mat-button [routerLink]="['/manage-halls']"><mat-icon>meeting_room</mat-icon> Zadządzaj salami</a>
-        <a mat-button [routerLink]="['/manage-users']"><mat-icon>people</mat-icon> Zarządzaj użytkownikami</a>
+        <button mat-button [matMenuTriggerFor]="menu"><mat-icon>widgets</mat-icon> Akcje pracownika</button>
+        <mat-menu #menu="matMenu">
+          <a mat-menu-item [routerLink]="['/manage-seanses']"><mat-icon>video_settings</mat-icon> Zarządzaj seansami</a>
+          <a mat-menu-item [routerLink]="['/manage-movies']"><mat-icon>movie</mat-icon> Zarządzaj filmami</a>
+          <a mat-menu-item [routerLink]="['/manage-halls']"><mat-icon>room_preferences</mat-icon> Zadządzaj salami</a>
+          <a mat-menu-item [routerLink]="['/manage-users']"><mat-icon>manage_accounts</mat-icon> Zarządzaj użytkownikami</a>
+        </mat-menu>
       </ng-container>
 
       <ng-container *ngIf="!isAdmin()">
-        <a mat-button [routerLink]="['/seanse-selection']"><mat-icon>live_tv</mat-icon> Wybierz seans</a>
-        <a mat-button [routerLink]="['/manage-profile']"><mat-icon>account_circle</mat-icon>Edytuj profil</a>
+        <a mat-button [routerLink]="['/seanse-selection']"><mat-icon>live_tv</mat-icon>Wybierz seans</a>
       </ng-container>
+
+      <a mat-button [routerLink]="['/manage-profile']"><mat-icon>account_circle</mat-icon>Edytuj profil</a>
     </nav>
   </mat-toolbar>
-  <router-outlet></router-outlet>
+
+  <main>
+    <router-outlet></router-outlet>
+  </main>
 </div>
