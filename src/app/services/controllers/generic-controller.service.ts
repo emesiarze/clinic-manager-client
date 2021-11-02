@@ -8,7 +8,9 @@ import {Identifiable} from "../../models/Identifiable";
   providedIn: 'root'
 })
 export abstract class GenericControllerService<T extends Identifiable> {
-  protected constructor(protected _endpointUrl: string, protected _http: HttpClient) { }
+  protected constructor(protected _http: HttpClient) { }
+
+  protected abstract _endpointUrl: string;
 
   public getAllItems(): Observable<CommonResponse<T[]>> {
     return this._http.get<CommonResponse<T[]>>(`/api/${this._endpointUrl}/all`);

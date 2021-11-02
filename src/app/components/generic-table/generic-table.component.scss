@@ -1,0 +1,25 @@
+@use '../../../variables' as *;
+
+table {
+  width: 100%;
+
+  td,
+  th {
+    &:not(:first-child) {
+      text-align: center;
+    }
+  }
+
+  tr:not([class*='header']) {
+    cursor: pointer;
+
+    &:hover {
+      background-color: $bg-color-hover;
+    }
+  }
+}
+
+.no-elements-row {
+  padding: $spacing-small $spacing-regular;
+  margin: 0;
+}

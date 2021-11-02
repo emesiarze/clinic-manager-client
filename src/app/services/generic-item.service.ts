@@ -28,7 +28,7 @@ export class GenericItemService<T extends Identifiable> {
       catchError((err) => {
         this.handleDefaultError(err);
         return of(null);
-      })
+      }),
     );
   }
 

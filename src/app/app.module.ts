@@ -16,6 +16,8 @@ import { ManageHallsComponent } from './pages/manage-halls/manage-halls.componen
 import { ManageMoviesComponent } from './pages/manage-movies/manage-movies.component';
 import { SeanseSelectionComponent } from './pages/seanse-selection/seanse-selection.component';
 import { ManageProfileComponent } from './pages/manage-profile/manage-profile.component';
+import { GenericTableComponent } from './components/generic-table/generic-table.component';
+import { UsersTableComponent } from './components/users-table/users-table.component';
 
 
 @NgModule({
@@ -28,7 +30,9 @@ import { ManageProfileComponent } from './pages/manage-profile/manage-profile.co
     ManageHallsComponent,
     ManageMoviesComponent,
     SeanseSelectionComponent,
-    ManageProfileComponent
+    ManageProfileComponent,
+    GenericTableComponent,
+    UsersTableComponent
   ],
   imports: [
     BrowserModule,

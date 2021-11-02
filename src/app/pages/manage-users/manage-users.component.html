@@ -1,1 +1,5 @@
-<p>manage-users works!</p>
+<h1>Manage users</h1>
+
+<app-users-table [dataSource]="dataSource"
+                 (itemDeleted)="onItemDelete($event)"
+                 (itemEdit)="onItemEdit($event)"></app-users-table>
