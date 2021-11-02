@@ -18,9 +18,19 @@ import { SeanseSelectionComponent } from './pages/seanse-selection/seanse-select
 import { ManageProfileComponent } from './pages/manage-profile/manage-profile.component';
 import { GenericTableComponent } from './components/generic-table/generic-table.component';
 import { UsersTableComponent } from './components/users-table/users-table.component';
+import { UserDetailsComponent } from "./components/user-details/user-details.component";
 
 
 @NgModule({
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    CommonMaterialModule,
+    CommonFormsModule,
+    HttpClientModule,
+    CommonComponentsModule
+  ],
   declarations: [
     AppComponent,
     LoginComponent,
@@ -32,17 +42,10 @@ import { UsersTableComponent } from './components/users-table/users-table.compon
     SeanseSelectionComponent,
     ManageProfileComponent,
     GenericTableComponent,
-    UsersTableComponent
+    UsersTableComponent,
+    UserDetailsComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    CommonMaterialModule,
-    CommonFormsModule,
-    HttpClientModule,
-    CommonComponentsModule
-  ],
+  entryComponents: [UserDetailsComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

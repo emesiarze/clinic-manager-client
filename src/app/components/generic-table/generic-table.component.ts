@@ -105,17 +105,11 @@ export class GenericTableComponent<T extends Identifiable> {
     this._itemEditEmitter = new EventEmitter<T>();
   }
 
-  public navigateToDetailsWithData(item: Identifiable, edit = false): void {
-    if (!this._readonly) {
-      console.log('Show details')
-    }
-  }
-
-  protected emitEdit(item: T): void {
+  public emitEdit(item: T): void {
     this._itemEditEmitter.emit(item);
   }
 
-  protected emitDelete(itemId: string): void {
+  public emitDelete(itemId: string): void {
     this._itemDeletedEmitter.emit(itemId);
   }
 }

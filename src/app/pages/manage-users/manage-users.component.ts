@@ -1,8 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../services/user.service";
 import {User} from "../../models/user";
-import {filter, tap} from "rxjs/operators";
+import {filter, switchMap, tap} from "rxjs/operators";
 import {GenericDataSource} from "../../models/generic-data-source";
+import {MatDialog} from "@angular/material/dialog";
+import {UserDetailsComponent} from "../../components/user-details/user-details.component";
+import {ItemDetailsData} from "../../models/item-details-data";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-manage-users',
@@ -13,10 +17,14 @@ export class ManageUsersComponent implements OnInit {
   private _dataSource = new GenericDataSource<User>([]);
   private _requestCount = 0;
 
-  constructor(private _usersService: UserService) { }
+  constructor(private _usersService: UserService, private _dialogService: MatDialog) { }
 
   get dataSource(): GenericDataSource<User> {
     return this._dataSource;
+  }
+
+  get isLoading(): boolean {
+    return this._requestCount > 0;
   }
 
   ngOnInit(): void {
@@ -32,7 +40,29 @@ export class ManageUsersComponent implements OnInit {
     ).subscribe();
   }
 
-  public onItemEdit(item: User) {
+  public onItemEdit(user: User) {
+    this.openDialogAndWaitForClosure(user).pipe(
+      filter(value => !!value),
+      tap((value) => {
+        this._requestCount++;
+        console.log(value)
+      }),
+      switchMap(value => this._usersService.updateItem(value)),
+      tap(() => this._requestCount--),
+      filter(value => !!value),
+      tap(() => this.loadData())
+    ).subscribe()
+  }
+
+  private openDialogAndWaitForClosure(user: User): Observable<any> {
+    return this._dialogService.open(UserDetailsComponent, {
+      data: {
+        create: false,
+        user: user
+      } as ItemDetailsData,
+      width: '50vw',
+      maxHeight: '90vh'
+    }).afterClosed()
   }
 
   public onItemDelete(id: string) {
@@ -43,5 +73,4 @@ export class ManageUsersComponent implements OnInit {
       })
     ).subscribe();
   }
-
 }

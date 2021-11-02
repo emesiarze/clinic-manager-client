@@ -1,0 +1,29 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <h2>{{ create ? 'Tworzenie' : 'Edycja' }}</h2>
+
+  <mat-dialog-content>
+    <mat-form-field appearance="outline">
+      <mat-label>Login</mat-label>
+      <input matInput type="text" formControlName="login">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Pełna nazwa</mat-label>
+      <input matInput type="text" formControlName="fullName">
+    </mat-form-field>
+
+    <ng-container *ngIf="create">
+      <mat-form-field appearance="outline">
+        <mat-label>Hasło</mat-label>
+        <input matInput type="password" formControlName="password">
+      </mat-form-field>
+    </ng-container>
+
+    <mat-checkbox formControlName="isWorker" color="primary">Pracownik</mat-checkbox>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-button color="primary" type="submit">{{ create ? 'Stwórz' : 'Zapisz' }}</button>
+    <button mat-button type="button" (click)="closeDialog()">Zamknij</button>
+  </mat-dialog-actions>
+</form>

@@ -26,8 +26,7 @@ export abstract class GenericControllerService<T extends Identifiable> {
   }
 
   public updateItem(item: T): Observable<CommonResponse<string>> {
-    const params = new HttpParams().appendAll({ id: item.id });
-    return this._http.put<CommonResponse<string>>(`/api/${this._endpointUrl}`, { params: params});
+    return this._http.put<CommonResponse<string>>(`/api/${this._endpointUrl}`, item);
   }
 
   public deleteItem(id: string): Observable<CommonResponse<string>> {

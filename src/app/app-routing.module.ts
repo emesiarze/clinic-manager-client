@@ -36,7 +36,7 @@ const routes: Routes = [
   {
     path: 'manage-users',
     component: ManageUsersComponent,
-    canActivate: [AuthGuard, AdminGuard]
+    canActivate: []
   },
   {
     path: 'manage-halls',

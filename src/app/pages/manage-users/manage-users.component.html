@@ -1,5 +1,6 @@
 <h1>Manage users</h1>
 
 <app-users-table [dataSource]="dataSource"
+                 [isLoading]="isLoading"
                  (itemDeleted)="onItemDelete($event)"
                  (itemEdit)="onItemEdit($event)"></app-users-table>
