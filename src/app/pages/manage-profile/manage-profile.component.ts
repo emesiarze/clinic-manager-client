@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {AuthService} from "../../services/auth.service";
 import {User} from "../../models/user";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-manage-profile',
@@ -11,7 +12,7 @@ import {User} from "../../models/user";
 export class ManageProfileComponent implements OnInit {
   private _form: FormGroup;
 
-  constructor(private _fb: FormBuilder, private _authService: AuthService) { }
+  constructor(private _fb: FormBuilder, private _usersService: UserService, private _authService: AuthService) { }
 
   get form(): FormGroup {
     return this._form;
@@ -31,16 +32,16 @@ export class ManageProfileComponent implements OnInit {
       fullName: this.user.fullName || undefined,
     });
   }
-
-  public updateUser(): void {
-    const user = {
+  private createUserFromFrom(): User {
+    return {
       id: this.user.id,
       fullName: this._form.get('fullName')!.value,
       login: this.form.get('login')!.value,
-      password: this.user.password,
-      isWorker: this.user.isWorker
-    };
+    } as User;
+  }
 
-    console.log(user);
+  public updateUser(): void {
+    const user = this.createUserFromFrom();
+    this._usersService.updateItem(user).subscribe();
   }
 }
