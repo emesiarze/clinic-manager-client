@@ -40,24 +40,21 @@ export class ManageUsersComponent implements OnInit {
     ).subscribe();
   }
 
-  public onItemEdit(user: User) {
-    this.openDialogAndWaitForClosure(user).pipe(
+  public onEditItem(user: User) {
+    this.openDialogAndWaitForClosure(false, user).pipe(
       filter(value => !!value),
-      tap((value) => {
-        this._requestCount++;
-        console.log(value)
-      }),
-      switchMap(value => this._usersService.updateItem(value)),
+      tap(() => this._requestCount++),
+      switchMap(user => this._usersService.updateItem(user)),
       tap(() => this._requestCount--),
       filter(value => !!value),
       tap(() => this.loadData())
     ).subscribe()
   }
 
-  private openDialogAndWaitForClosure(user: User): Observable<any> {
+  private openDialogAndWaitForClosure(create = true, user?: User): Observable<any> {
     return this._dialogService.open(UserDetailsComponent, {
       data: {
-        create: false,
+        create: create,
         user: user
       } as ItemDetailsData,
       width: '50vw',
@@ -65,12 +62,23 @@ export class ManageUsersComponent implements OnInit {
     }).afterClosed()
   }
 
-  public onItemDelete(id: string) {
+  public onDeleteItem(id: string) {
     this._usersService.deleteItem(id).pipe(
       tap(() => {
         this._requestCount--;
         this.loadData();
       })
     ).subscribe();
+  }
+
+  public onAddItem(): void {
+    this.openDialogAndWaitForClosure().pipe(
+      filter(value => !!value),
+        tap(() => this._requestCount++),
+        switchMap(user => this._usersService.addItem(user)),
+        tap(() => this._requestCount--),
+        filter(value => !!value),
+        tap(() => this.loadData())
+    ).subscribe()
   }
 }
