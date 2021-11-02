@@ -37,7 +37,10 @@ export class ManageUsersComponent implements OnInit {
 
   public onItemDelete(id: string) {
     this._usersService.deleteItem(id).pipe(
-      tap(() => this._requestCount--)
+      tap(() => {
+        this._requestCount--;
+        this.loadData();
+      })
     ).subscribe();
   }
 

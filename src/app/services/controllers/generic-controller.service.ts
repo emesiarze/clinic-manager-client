@@ -32,7 +32,7 @@ export abstract class GenericControllerService<T extends Identifiable> {
 
   public deleteItem(id: string): Observable<CommonResponse<string>> {
     const params = new HttpParams().appendAll({ id: id });
-    return this._http.get<CommonResponse<string>>(`/api/${this._endpointUrl}`, { params: params});
+    return this._http.delete<CommonResponse<string>>(`/api/${this._endpointUrl}`, { params: params});
   }
 
 }
