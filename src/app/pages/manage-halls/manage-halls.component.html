@@ -1,1 +1,17 @@
-<p>manage-halls works!</p>
+<header>
+  <h1>Zarządzanie salami</h1>
+
+  <div class="button-wrapper">
+    <button mat-stroked-button color="primary" (click)="onAddItem()"><mat-icon>add</mat-icon>Dodaj</button>
+  </div>
+</header>
+
+<app-halls-table [dataSource]="dataSource"
+                  [isLoading]="isLoading"
+                  (itemDeleted)="onDeleteItem($event)"
+                  (itemEdit)="onEditItem($event)">
+</app-halls-table>
+
+<div class="button-wrapper m-t-16">
+  <button mat-stroked-button color="primary" (click)="onAddItem()"><mat-icon>add</mat-icon>Dodaj</button>
+</div>
