@@ -21,10 +21,21 @@ export class UsersTableComponent extends GenericTableComponent<User>{
         formatter: (id: string) => id.substr(0, 5)
       },
       {
+        defName: 'login',
+        displayName: 'Login',
+        propertyName: 'login'
+      },
+      {
         defName: 'fullName',
         displayName: 'Pełna nazwa',
         propertyName: 'fullName'
-      }
+      },
+      {
+        defName: 'isWorker',
+        displayName: 'Pracownik',
+        propertyName: 'isWorker',
+        formatter: (isWorker: boolean) => isWorker ? 'Tak' : 'Nie'
+      },
     ];
 
     this._actionsDefinitions = [

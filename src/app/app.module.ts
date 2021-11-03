@@ -17,7 +17,7 @@ import { ManageMoviesComponent } from './pages/manage-movies/manage-movies.compo
 import { SeanseSelectionComponent } from './pages/seanse-selection/seanse-selection.component';
 import { ManageProfileComponent } from './pages/manage-profile/manage-profile.component';
 import { GenericTableComponent } from './components/generic-table/generic-table.component';
-import { UsersTableComponent } from './components/users-table/users-table.component';
+import { UsersTableComponent } from './components/tables/users-table.component';
 import { UserDetailsComponent } from "./components/user-details/user-details.component";
 
 
