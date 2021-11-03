@@ -23,6 +23,7 @@ import {MovieDetailsComponent} from "./components/movie-details/movie-details.co
 import {MoviesTableComponent} from "./components/tables/movies-table.component";
 import {HallsTableComponent} from "./components/tables/halls-table.component";
 import {HallDetailsComponent} from "./components/hall-details/hall-details.component";
+import {SeansesTableComponent} from "./components/tables/seanses-table.component";
 
 
 @NgModule({
@@ -52,6 +53,7 @@ import {HallDetailsComponent} from "./components/hall-details/hall-details.compo
     MovieDetailsComponent,
     HallsTableComponent,
     HallDetailsComponent,
+    SeansesTableComponent
   ],
   entryComponents: [
     UserDetailsComponent,
