@@ -5,17 +5,21 @@
     <mat-form-field appearance="outline">
       <mat-label>Login</mat-label>
       <input matInput type="text" formControlName="login">
+      <mat-spinner *ngIf="form.get('login')?.pending" matSuffix diameter="20" mode="indeterminate"></mat-spinner>
+      <mat-error *ngIf="!isValid('login')">{{ getFirstErrorMessage('login') }}</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline">
       <mat-label>Pełna nazwa</mat-label>
       <input matInput type="text" formControlName="fullName">
+      <mat-error *ngIf="!isValid('fullName')">{{ getFirstErrorMessage('fullName') }}</mat-error>
     </mat-form-field>
 
     <ng-container *ngIf="create">
       <mat-form-field appearance="outline">
         <mat-label>Hasło</mat-label>
         <input matInput type="password" formControlName="password">
+        <mat-error *ngIf="!isValid('password')">{{ getFirstErrorMessage('password') }}</mat-error>
       </mat-form-field>
     </ng-container>
 
@@ -23,7 +27,7 @@
   </mat-dialog-content>
 
   <mat-dialog-actions>
-    <button mat-button color="primary" type="submit">{{ create ? 'Stwórz' : 'Zapisz' }}</button>
+    <button mat-button color="primary" type="submit" [disabled]="!form.valid">{{ create ? 'Stwórz' : 'Zapisz' }}</button>
     <button mat-button type="button" (click)="closeDialog()">Zamknij</button>
   </mat-dialog-actions>
 </form>

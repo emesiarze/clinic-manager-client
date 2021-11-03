@@ -40,6 +40,7 @@ export class ManageUsersComponent implements OnInit {
     ).subscribe();
   }
 
+  // region Item modifications
   public onEditItem(user: User) {
     this.openDialogAndWaitForClosure(false, user).pipe(
       filter(value => !!value),
@@ -49,17 +50,6 @@ export class ManageUsersComponent implements OnInit {
       filter(value => !!value),
       tap(() => this.loadData())
     ).subscribe()
-  }
-
-  private openDialogAndWaitForClosure(create = true, user?: User): Observable<any> {
-    return this._dialogService.open(UserDetailsComponent, {
-      data: {
-        create: create,
-        user: user
-      } as ItemDetailsData,
-      width: '50vw',
-      maxHeight: '90vh'
-    }).afterClosed()
   }
 
   public onDeleteItem(id: string) {
@@ -81,4 +71,16 @@ export class ManageUsersComponent implements OnInit {
         tap(() => this.loadData())
     ).subscribe()
   }
+
+  private openDialogAndWaitForClosure(create = true, user?: User): Observable<any> {
+    return this._dialogService.open(UserDetailsComponent, {
+      data: {
+        create: create,
+        user: user
+      } as ItemDetailsData,
+      width: '50vw',
+      maxHeight: '90vh'
+    }).afterClosed()
+  }
+  // endregion
 }

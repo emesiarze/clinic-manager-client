@@ -12,6 +12,7 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {MatTableModule} from "@angular/material/table";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     MatTableModule,
     MatDialogModule,
     MatCheckboxModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     MatMenuModule,
@@ -43,6 +45,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     MatTableModule,
     MatDialogModule,
     MatCheckboxModule,
+    MatProgressSpinnerModule
   ]
 })
 export class CommonMaterialModule { }

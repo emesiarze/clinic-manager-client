@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {of} from 'rxjs';
-import {catchError, tap} from 'rxjs/operators';
+import {Observable, of} from 'rxjs';
+import {catchError, map, tap} from 'rxjs/operators';
 import {CommonResponse} from '../models/response';
 import {User} from '../models/user';
 import {AuthService} from "./auth.service";
@@ -18,7 +18,7 @@ export class LoginService {
               private _snackBarService: SnackBarService,
               private _navigator: NavigationService) { }
 
-  login(login: string, password: string): void {
+  public login(login: string, password: string): void {
     this._loginController.login(login, password).pipe(
       tap((result: CommonResponse<User>) => {
         const user = result.data;
@@ -29,6 +29,14 @@ export class LoginService {
         return of(empty);
       })
     ).subscribe();
+  }
+
+  public doesLoginExists(login: string): Observable<boolean> {
+    return this._loginController.doesLoginExists(login).pipe(
+      map((response: CommonResponse<string>) => {
+        return response.data !== 'not_exists';
+      })
+    )
   }
 
   public logout(): void {

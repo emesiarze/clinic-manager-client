@@ -12,13 +12,18 @@ export class LoginControllerService {
 
   constructor(private _http: HttpClient) { }
 
-  login(login: string, password: string): Observable<CommonResponse<User>> {
+  public login(login: string, password: string): Observable<CommonResponse<User>> {
     const params = new HttpParams().appendAll({
       login: login,
       password: password
     });
 
     return this.sendLoginRequest(params);
+  }
+
+  public doesLoginExists(login: string): Observable<CommonResponse<string>> {
+    const params = new HttpParams().appendAll({login: login});
+    return this._http.get<CommonResponse<string>>(`${this.loginUrl}/login-check`, { params: params });
   }
 
   private sendLoginRequest(params: HttpParams): Observable<CommonResponse<User>> {
