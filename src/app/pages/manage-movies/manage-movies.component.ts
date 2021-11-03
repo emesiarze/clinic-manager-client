@@ -1,9 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {GenericDataSource} from "../../models/generic-data-source";
 import {MatDialog} from "@angular/material/dialog";
-import {filter, tap} from "rxjs/operators";
+import {filter, switchMap, tap} from "rxjs/operators";
+import {Observable} from "rxjs";
+import {ItemDetailsData} from "../../models/item-details-data";
 import {MoviesService} from "../../services/movies.service";
 import {Movie} from "../../models/movie";
+import {MovieDetailsComponent} from "../../components/movie-details/movie-details.component";
 
 @Component({
   selector: 'app-manage-movies',
@@ -40,6 +43,14 @@ export class ManageMoviesComponent implements OnInit {
 
   // region Item modifications
   public onEditItem(movie: Movie) {
+    this.openDialogAndWaitForClosure(false, movie).pipe(
+      filter(value => !!value),
+      tap(() => this._requestCount++),
+      switchMap(movie => this._moviesService.updateItem(movie)),
+      tap(() => this._requestCount--),
+      filter(value => !!value),
+      tap(() => this.loadData())
+    ).subscribe()
   }
 
   public onDeleteItem(id: string) {
@@ -52,6 +63,25 @@ export class ManageMoviesComponent implements OnInit {
   }
 
   public onAddItem(): void {
+    this.openDialogAndWaitForClosure().pipe(
+      filter(value => !!value),
+      tap(() => this._requestCount++),
+      switchMap(movie => this._moviesService.addItem(movie)),
+      tap(() => this._requestCount--),
+      filter(value => !!value),
+      tap(() => this.loadData())
+    ).subscribe()
+  }
+
+  private openDialogAndWaitForClosure(create = true, movie?: Movie): Observable<any> {
+    return this._dialogService.open(MovieDetailsComponent, {
+      data: {
+        create: create,
+        item: movie
+      } as ItemDetailsData<Movie>,
+      width: '50vw',
+      maxHeight: '90vh'
+    }).afterClosed()
   }
   // endregion
 }

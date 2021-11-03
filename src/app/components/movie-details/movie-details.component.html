@@ -1,0 +1,30 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <h2>{{ create ? 'Tworzenie' : 'Edycja' }}</h2>
+
+  <mat-dialog-content>
+    <mat-form-field appearance="outline">
+      <mat-label>Tytuł</mat-label>
+      <input matInput type="text" formControlName="title">
+      <mat-error *ngIf="!isValid('title')">{{ getFirstErrorMessage('title') }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Reżyser</mat-label>
+      <input matInput type="text" formControlName="director">
+      <mat-error *ngIf="!isValid('director')">{{ getFirstErrorMessage('director') }}</mat-error>
+    </mat-form-field>
+
+    <ng-container>
+      <mat-form-field appearance="outline">
+        <mat-label>Czas trwania</mat-label>
+        <input matInput type="number" formControlName="duration">
+        <mat-error *ngIf="!isValid('duration')">{{ getFirstErrorMessage('duration') }}</mat-error>
+      </mat-form-field>
+    </ng-container>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-button color="primary" type="submit" [disabled]="!form.valid">{{ create ? 'Stwórz' : 'Zapisz' }}</button>
+    <button mat-button type="button" (click)="closeDialog()">Zamknij</button>
+  </mat-dialog-actions>
+</form>
