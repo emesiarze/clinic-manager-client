@@ -21,9 +21,9 @@ export class HallsTableComponent extends GenericTableComponent<Hall>{
         formatter: (id: string) => id.substr(0, 5)
       },
       {
-        defName: 'number',
+        defName: 'name',
         displayName: 'Numer sali',
-        propertyName: 'number'
+        propertyName: 'name'
       }
     ];
 

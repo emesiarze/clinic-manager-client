@@ -1,9 +1,12 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {GenericDataSource} from "../../models/generic-data-source";
 import {Hall} from "../../models/hall";
 import {HallsService} from "../../services/halls.service";
 import {MatDialog} from "@angular/material/dialog";
-import {filter, tap} from "rxjs/operators";
+import {filter, switchMap, tap} from "rxjs/operators";
+import {Observable} from "rxjs";
+import {ItemDetailsData} from "../../models/item-details-data";
+import {HallDetailsComponent} from "../../components/hall-details/hall-details.component";
 
 @Component({
   selector: 'app-manage-halls',
@@ -40,6 +43,14 @@ export class ManageHallsComponent implements OnInit {
 
   // region Item modifications
   public onEditItem(hall: Hall) {
+    this.openDialogAndWaitForClosure(false, hall).pipe(
+      filter(value => !!value),
+      tap(() => this._requestCount++),
+      switchMap(hall => this._hallsService.updateItem(hall)),
+      tap(() => this._requestCount--),
+      filter(value => !!value),
+      tap(() => this.loadData())
+    ).subscribe()
   }
 
   public onDeleteItem(id: string) {
@@ -52,7 +63,25 @@ export class ManageHallsComponent implements OnInit {
   }
 
   public onAddItem(): void {
+    this.openDialogAndWaitForClosure().pipe(
+      filter(value => !!value),
+      tap(() => this._requestCount++),
+      switchMap(hall => this._hallsService.addItem(hall)),
+      tap(() => this._requestCount--),
+      filter(value => !!value),
+      tap(() => this.loadData())
+    ).subscribe()
   }
 
+  private openDialogAndWaitForClosure(create = true, hall?: Hall): Observable<any> {
+    return this._dialogService.open(HallDetailsComponent, {
+      data: {
+        create: create,
+        item: hall
+      } as ItemDetailsData<Hall>,
+      width: '50vw',
+      maxHeight: '90vh'
+    }).afterClosed()
+  }
   // endregion
 }

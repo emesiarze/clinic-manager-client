@@ -1,24 +1,24 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Movie} from "../../models/movie";
+import {Hall} from "../../models/hall";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {ItemDetailsData} from "../../models/item-details-data";
 
 @Component({
-  selector: 'app-movie-details',
-  templateUrl: './movie-details.component.html',
-  styleUrls: ['./movie-details.component.scss']
+  selector: 'app-hall-details',
+  templateUrl: './hall-details.component.html',
+  styleUrls: ['./hall-details.component.scss']
 })
-export class MovieDetailsComponent implements OnInit {
+export class HallDetailsComponent implements OnInit {
   private _form: FormGroup;
   private readonly _create: boolean;
-  private _movie?: Movie;
+  private _hall?: Hall;
 
   constructor(private _fb: FormBuilder,
-              private _dialog: MatDialogRef<MovieDetailsComponent>,
-              @Inject(MAT_DIALOG_DATA) data: ItemDetailsData<Movie>) {
+              private _dialog: MatDialogRef<HallDetailsComponent>,
+              @Inject(MAT_DIALOG_DATA) data: ItemDetailsData<Hall>) {
     this._create = data.create;
-    this._movie = data.item;
+    this._hall = data.item;
   }
 
   get form(): FormGroup {
@@ -35,25 +35,21 @@ export class MovieDetailsComponent implements OnInit {
 
   private buildForm(): FormGroup {
     return this._fb.group({
-      title: [this._movie?.title || undefined, [Validators.required]],
-      director: [this._movie?.director || undefined, [Validators.required]],
-      duration: [this._movie?.duration || undefined, [Validators.required]],
+      name: [this._hall?.name || undefined, [Validators.required]],
     });
   }
 
-  private parseForm(): Movie {
+  private parseForm(): Hall {
     return {
-      id: this._movie?.id,
-      title: this._form.get('title')?.value,
-      director: this._form.get('director')?.value,
-      duration: this._form.get('duration')?.value
-    } as Movie;
+      id: this._hall?.id,
+      name: this._form.get('name')?.value,
+    } as Hall;
   }
 
   public onSubmit(): void {
-    const movie = this.parseForm();
+    const hall = this.parseForm();
 
-    this._dialog.close(movie)
+    this._dialog.close(hall)
   }
 
   public closeDialog(): void {
