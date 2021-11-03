@@ -33,7 +33,8 @@ export class SeansesTableComponent extends GenericTableComponent<Seanse>{
       {
         defName: 'startTime',
         displayName: 'Czas rozpoczęcia',
-        propertyName: 'startTime'
+        propertyName: 'startTime',
+        formatter: (date: Date) => new Date(date).toLocaleString('pl-PL')
       }
     ];
 

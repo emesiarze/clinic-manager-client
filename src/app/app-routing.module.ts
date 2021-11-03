@@ -41,12 +41,12 @@ const routes: Routes = [
   {
     path: 'manage-halls',
     component: ManageHallsComponent,
-    canActivate: []
+    canActivate: [AuthGuard, AdminGuard]
   },
   {
     path: 'manage-seanses',
     component: ManageSeansesComponent,
-    canActivate: [AuthGuard, AdminGuard]
+    canActivate: []
   },
   {
     path: 'manage-movies',
