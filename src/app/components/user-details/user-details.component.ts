@@ -18,10 +18,10 @@ export class UserDetailsComponent implements OnInit {
 
   constructor(private _fb: FormBuilder,
               private _dialog: MatDialogRef<UserDetailsComponent>,
-              @Inject(MAT_DIALOG_DATA) data: ItemDetailsData,
+              @Inject(MAT_DIALOG_DATA) data: ItemDetailsData<User>,
               private _loginService: LoginService) {
     this._create = data.create;
-    this._user = data.user;
+    this._user = data.item;
   }
 
   get form(): FormGroup {

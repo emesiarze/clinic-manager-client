@@ -19,6 +19,8 @@ import { ManageProfileComponent } from './pages/manage-profile/manage-profile.co
 import { GenericTableComponent } from './components/generic-table/generic-table.component';
 import { UsersTableComponent } from './components/tables/users-table.component';
 import { UserDetailsComponent } from "./components/user-details/user-details.component";
+import {MovieDetailsComponent} from "./components/movie-details/movie-details.component";
+import {MoviesTableComponent} from "./components/tables/movies-table.component";
 
 
 @NgModule({
@@ -43,9 +45,14 @@ import { UserDetailsComponent } from "./components/user-details/user-details.com
     ManageProfileComponent,
     GenericTableComponent,
     UsersTableComponent,
-    UserDetailsComponent
+    UserDetailsComponent,
+    MoviesTableComponent,
+    MovieDetailsComponent,
   ],
-  entryComponents: [UserDetailsComponent],
+  entryComponents: [
+    UserDetailsComponent,
+    MovieDetailsComponent,
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

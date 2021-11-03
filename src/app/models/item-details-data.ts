@@ -1,6 +1,4 @@
-import {User} from "./user";
-
-export interface ItemDetailsData {
+export interface ItemDetailsData<T> {
   create: boolean,
-  user?: User
+  item?: T
 }

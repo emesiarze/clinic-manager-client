@@ -36,7 +36,7 @@ const routes: Routes = [
   {
     path: 'manage-users',
     component: ManageUsersComponent,
-    canActivate: []
+    canActivate: [AuthGuard]
   },
   {
     path: 'manage-halls',
@@ -51,7 +51,7 @@ const routes: Routes = [
   {
     path: 'manage-movies',
     component: ManageMoviesComponent,
-    canActivate: [AuthGuard, AdminGuard]
+    canActivate: []
   },
   {
     path: '**',

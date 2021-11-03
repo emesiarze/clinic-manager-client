@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {AuthService} from "../../services/auth.service";
 import {User} from "../../models/user";
-import {UserService} from "../../services/user.service";
+import {UsersService} from "../../services/users.service";
 
 @Component({
   selector: 'app-manage-profile',
@@ -12,7 +12,7 @@ import {UserService} from "../../services/user.service";
 export class ManageProfileComponent implements OnInit {
   private _form: FormGroup;
 
-  constructor(private _fb: FormBuilder, private _usersService: UserService, private _authService: AuthService) { }
+  constructor(private _fb: FormBuilder, private _usersService: UsersService, private _authService: AuthService) { }
 
   get form(): FormGroup {
     return this._form;

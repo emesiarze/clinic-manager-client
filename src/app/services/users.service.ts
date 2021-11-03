@@ -7,7 +7,7 @@ import {UsersControllerService} from "./controllers/users-controller.service";
 @Injectable({
   providedIn: 'root'
 })
-export class UserService extends GenericItemService<User> {
+export class UsersService extends GenericItemService<User> {
 
   constructor(protected _controller: UsersControllerService, protected _snackBarService: SnackBarService) {
     super(_controller, _snackBarService)

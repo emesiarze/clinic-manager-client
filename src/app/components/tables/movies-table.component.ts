@@ -1,18 +1,19 @@
 import {Component} from '@angular/core';
 import {GenericTableComponent} from "../generic-table/generic-table.component";
-import {User} from "../../models/user";
-import {AuthService} from "../../services/auth.service";
+import {Movie} from "../../models/movie";
 import {Identifiable} from "../../models/Identifiable";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
-  selector: 'app-users-table',
+  selector: 'app-movies-table',
   templateUrl: '../generic-table/generic-table.component.html',
   styleUrls: ['../generic-table/generic-table.component.scss']
 })
-export class UsersTableComponent extends GenericTableComponent<User>{
+export class MoviesTableComponent extends GenericTableComponent<Movie>{
 
   constructor(private _authService: AuthService) {
     super();
+
     this._columnsDefinitions = [
       {
         defName: 'id',
@@ -21,20 +22,20 @@ export class UsersTableComponent extends GenericTableComponent<User>{
         formatter: (id: string) => id.substr(0, 5)
       },
       {
-        defName: 'login',
-        displayName: 'Login',
-        propertyName: 'login'
+        defName: 'title',
+        displayName: 'Tytuł',
+        propertyName: 'title',
       },
       {
-        defName: 'fullName',
-        displayName: 'Pełna nazwa',
-        propertyName: 'fullName'
+        defName: 'director',
+        displayName: 'Reżyser',
+        propertyName: 'director',
       },
       {
-        defName: 'isWorker',
-        displayName: 'Pracownik',
-        propertyName: 'isWorker',
-        formatter: (isWorker: boolean) => isWorker ? 'Tak' : 'Nie'
+        defName: 'duration',
+        displayName: 'Czas trwania',
+        propertyName: 'duration',
+        formatter: (duration: number) => `${duration} min`
       },
     ];
 
@@ -42,7 +43,7 @@ export class UsersTableComponent extends GenericTableComponent<User>{
       {
         icon: 'edit',
         action: (item: Identifiable) => {
-          this.emitEdit(item as User);
+          this.emitEdit(item as Movie);
         },
         canDisplay: (): boolean => {
           return this._authService.isAdmin();

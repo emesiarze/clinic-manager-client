@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {UserService} from "../../services/user.service";
+import {UsersService} from "../../services/users.service";
 import {User} from "../../models/user";
 import {filter, switchMap, tap} from "rxjs/operators";
 import {GenericDataSource} from "../../models/generic-data-source";
@@ -17,7 +17,7 @@ export class ManageUsersComponent implements OnInit {
   private _dataSource = new GenericDataSource<User>([]);
   private _requestCount = 0;
 
-  constructor(private _usersService: UserService, private _dialogService: MatDialog) { }
+  constructor(private _usersService: UsersService, private _dialogService: MatDialog) { }
 
   get dataSource(): GenericDataSource<User> {
     return this._dataSource;
@@ -76,8 +76,8 @@ export class ManageUsersComponent implements OnInit {
     return this._dialogService.open(UserDetailsComponent, {
       data: {
         create: create,
-        user: user
-      } as ItemDetailsData,
+        item: user
+      } as ItemDetailsData<User>,
       width: '50vw',
       maxHeight: '90vh'
     }).afterClosed()

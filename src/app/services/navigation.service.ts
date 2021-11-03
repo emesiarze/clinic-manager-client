@@ -14,7 +14,7 @@ export class NavigationService {
   }
 
   public navigateToHomeScreen(): void {
-    this._router.navigate(['/manage-users']);
+    this._router.navigate(['/manage-movies']);
   }
 
   public navigateToLoginScreen(): void {

@@ -1,1 +1,17 @@
-<p>manage-movies works!</p>
+<header>
+  <h1>Manage users</h1>
+
+  <div class="button-wrapper">
+    <button mat-stroked-button color="primary" (click)="onAddItem()"><mat-icon>add</mat-icon>Dodaj</button>
+  </div>
+</header>
+
+<app-movies-table [dataSource]="dataSource"
+                  [isLoading]="isLoading"
+                  (itemDeleted)="onDeleteItem($event)"
+                  (itemEdit)="onEditItem($event)">
+</app-movies-table>
+
+<div class="button-wrapper m-t-16">
+  <button mat-stroked-button color="primary" (click)="onAddItem()"><mat-icon>add</mat-icon>Dodaj</button>
+</div>
