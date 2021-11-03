@@ -1,6 +1,4 @@
-import {Identifiable} from "./Identifiable";
-
-export interface Movie extends Identifiable {
+export interface Movie {
   id: string
   director: string
   title: string
