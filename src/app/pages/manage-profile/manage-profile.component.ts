@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 import {AuthService} from "../../services/auth.service";
 import {User} from "../../models/user";
 import {UsersService} from "../../services/users.service";
+import {tap} from "rxjs/operators";
 
 @Component({
   selector: 'app-manage-profile',
@@ -42,6 +43,12 @@ export class ManageProfileComponent implements OnInit {
 
   public updateUser(): void {
     const user = this.createUserFromFrom();
-    this._usersService.updateItem(user).subscribe();
+    this._usersService.updateItem(user).pipe(
+      tap(value => {
+        value
+          ? this._authService.user!.fullName = this.form.get('fullName')?.value
+          : this.form.get('fullName')?.patchValue(this._authService.user!.fullName);
+      })
+    ).subscribe();
   }
 }
