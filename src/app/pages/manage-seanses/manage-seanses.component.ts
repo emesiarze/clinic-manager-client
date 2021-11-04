@@ -3,7 +3,10 @@ import {GenericDataSource} from "../../models/generic-data-source";
 import {Seanse} from "../../models/seanse";
 import {SeansesService} from "../../services/seanses.service";
 import {MatDialog} from "@angular/material/dialog";
-import {filter, tap} from "rxjs/operators";
+import {filter, switchMap, tap} from "rxjs/operators";
+import {Observable} from "rxjs";
+import {ItemDetailsData} from "../../models/item-details-data";
+import {SeanseDetailsComponent} from "../../components/seanse-details/seanse-details.component";
 
 @Component({
   selector: 'app-manage-seanses',
@@ -40,6 +43,14 @@ export class ManageSeansesComponent implements OnInit {
 
   // region Item modifications
   public onEditItem(seanse: Seanse) {
+    this.openDialogAndWaitForClosure(false, seanse).pipe(
+      filter(value => !!value),
+      tap(() => this._requestCount++),
+      switchMap(seanse => this._seansesService.updateItem(seanse)),
+      tap(() => this._requestCount--),
+      filter(value => !!value),
+      tap(() => this.loadData())
+    ).subscribe()
   }
 
   public onDeleteItem(id: string) {
@@ -52,6 +63,25 @@ export class ManageSeansesComponent implements OnInit {
   }
 
   public onAddItem(): void {
+    this.openDialogAndWaitForClosure().pipe(
+      filter(value => !!value),
+      tap(() => this._requestCount++),
+      switchMap(seanse => this._seansesService.addItem(seanse)),
+      tap(() => this._requestCount--),
+      filter(value => !!value),
+      tap(() => this.loadData())
+    ).subscribe()
+  }
+
+  private openDialogAndWaitForClosure(create = true, seanse?: Seanse): Observable<any> {
+    return this._dialogService.open(SeanseDetailsComponent, {
+      data: {
+        create: create,
+        item: seanse
+      } as ItemDetailsData<Seanse>,
+      width: '50vw',
+      maxHeight: '90vh'
+    }).afterClosed()
   }
   // endregion
 }

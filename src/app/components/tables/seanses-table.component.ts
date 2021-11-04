@@ -3,6 +3,8 @@ import {GenericTableComponent} from "../generic-table/generic-table.component";
 import {Seanse} from "../../models/seanse";
 import {AuthService} from "../../services/auth.service";
 import {Identifiable} from "../../models/Identifiable";
+import {Hall} from "../../models/hall";
+import {Movie} from "../../models/movie";
 
 @Component({
   selector: 'app-seanses-table',
@@ -21,14 +23,16 @@ export class SeansesTableComponent extends GenericTableComponent<Seanse>{
         formatter: (id: string) => id.substr(0, 5)
       },
       {
-        defName: 'hallId',
-        displayName: 'Sala',
-        propertyName: 'hallId'
+        defName: 'movie',
+        displayName: 'Film',
+        propertyName: 'movie',
+        formatter: (movie: Movie) => movie.title
       },
       {
-        defName: 'movieId',
-        displayName: 'Film',
-        propertyName: 'movieId'
+        defName: 'hall',
+        displayName: 'Sala',
+        propertyName: 'hall',
+        formatter: (hall: Hall) => hall.name
       },
       {
         defName: 'startTime',
