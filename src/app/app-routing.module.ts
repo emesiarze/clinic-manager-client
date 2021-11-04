@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
-import {ReservationComponent} from "./pages/home/reservation.component";
+import {ReservationComponent} from "./pages/reservation/reservation.component";
 import {AuthGuard} from "./services/auth.guard";
 import {ManageUsersComponent} from "./pages/manage-users/manage-users.component";
 import {AdminGuard} from "./services/admin.guard";
