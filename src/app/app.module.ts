@@ -8,7 +8,7 @@ import {LoginComponent} from './pages/login/login.component';
 import {CommonMaterialModule} from './common-material.module';
 import {CommonFormsModule} from './common-forms.module';
 import {HttpClientModule} from '@angular/common/http';
-import {HomeComponent} from './pages/home/home.component';
+import {ReservationComponent} from './pages/home/reservation.component';
 import {CommonComponentsModule} from "./components/common-components.module";
 import {ManageSeansesComponent} from './pages/manage-seanses/manage-seanses.component';
 import {ManageUsersComponent} from './pages/manage-users/manage-users.component';
@@ -40,7 +40,7 @@ import {SeanseDetailsComponent} from "./components/seanse-details/seanse-details
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent,
+    ReservationComponent,
     ManageSeansesComponent,
     ManageUsersComponent,
     ManageHallsComponent,

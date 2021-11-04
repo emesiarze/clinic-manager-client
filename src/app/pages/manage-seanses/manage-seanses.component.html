@@ -1,17 +1,19 @@
 <header>
   <h1>Zarządzanie seansami</h1>
 
-  <div class="button-wrapper">
+  <div class="button-wrapper" *ngIf="isAdmin">
     <button mat-stroked-button color="primary" (click)="onAddItem()"><mat-icon>add</mat-icon>Dodaj</button>
   </div>
 </header>
 
 <app-seanses-table [dataSource]="dataSource"
-                  [isLoading]="isLoading"
-                  (itemDeleted)="onDeleteItem($event)"
-                  (itemEdit)="onEditItem($event)">
+                   [isLoading]="isLoading"
+                   (itemDeleted)="onDeleteItem($event)"
+                   (itemEdit)="onEditItem($event)"
+                   (itemClick)="onClickItem($event)"
+>
 </app-seanses-table>
 
-<div class="button-wrapper m-t-16">
+<div class="button-wrapper m-t-16" *ngIf="isAdmin">
   <button mat-stroked-button color="primary" (click)="onAddItem()"><mat-icon>add</mat-icon>Dodaj</button>
 </div>

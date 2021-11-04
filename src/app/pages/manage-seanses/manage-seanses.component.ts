@@ -7,6 +7,8 @@ import {filter, switchMap, tap} from "rxjs/operators";
 import {Observable} from "rxjs";
 import {ItemDetailsData} from "../../models/item-details-data";
 import {SeanseDetailsComponent} from "../../components/seanse-details/seanse-details.component";
+import {AuthService} from "../../services/auth.service";
+import {NavigationService} from "../../services/navigation.service";
 
 @Component({
   selector: 'app-manage-seanses',
@@ -17,7 +19,10 @@ export class ManageSeansesComponent implements OnInit {
   private _dataSource = new GenericDataSource<Seanse>([]);
   private _requestCount = 0;
 
-  constructor(private _seansesService: SeansesService, private _dialogService: MatDialog) {
+  constructor(private _seansesService: SeansesService,
+              private _dialogService: MatDialog,
+              private _authService: AuthService,
+              private _navigator: NavigationService) {
   }
 
   get dataSource(): GenericDataSource<Seanse> {
@@ -26,6 +31,10 @@ export class ManageSeansesComponent implements OnInit {
 
   get isLoading(): boolean {
     return this._requestCount > 0;
+  }
+
+  get isAdmin(): boolean {
+    return this._authService.isAdmin();
   }
 
   ngOnInit(): void {
@@ -42,6 +51,12 @@ export class ManageSeansesComponent implements OnInit {
   }
 
   // region Item modifications
+  public onClickItem(item: Seanse) {
+    this.isAdmin
+      ? this.onEditItem(item)
+      : this. _navigator.navigateTo<Seanse>('reservation', item)
+  }
+
   public onEditItem(seanse: Seanse) {
     this.openDialogAndWaitForClosure(false, seanse).pipe(
       filter(value => !!value),

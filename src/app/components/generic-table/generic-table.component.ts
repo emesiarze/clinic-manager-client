@@ -43,6 +43,9 @@ export class GenericTableComponent<T extends Identifiable> {
   @Output('itemEdit')
   private _itemEditEmitter: EventEmitter<T>;
 
+  @Output('itemClick')
+  private _itemClickEmitter: EventEmitter<T>;
+
   //#region Getters and setters
   get detailsUrl(): string {
     return this._detailsUrl;
@@ -86,6 +89,7 @@ export class GenericTableComponent<T extends Identifiable> {
   get dataSource(): GenericDataSource<T> {
     return this._dataSource;
   }
+  //#endregion
 
   //#region Boolean calculated
   get actionsDefined(): boolean {
@@ -95,14 +99,17 @@ export class GenericTableComponent<T extends Identifiable> {
   get anyItemExists(): boolean {
     return this.dataSource ? this.dataSource.data.value.length > 0 : false;
   }
-
-  //#endregion
   //#endregion
 
   constructor() {
     this._dataSource = new GenericDataSource<T>([]);
     this._itemDeletedEmitter = new EventEmitter<string>();
     this._itemEditEmitter = new EventEmitter<T>();
+    this._itemClickEmitter = new EventEmitter<T>();
+  }
+
+  public emitItemClick(item: T): void {
+    this._itemClickEmitter.emit(item);
   }
 
   public emitEdit(item: T): void {
