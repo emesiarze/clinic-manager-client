@@ -5,7 +5,6 @@ import {CommonResponse} from '../models/response';
 import {User} from '../models/user';
 import {AuthService} from "./auth.service";
 import {LoginControllerService} from "./controllers/login-controller.service";
-import {empty} from "rxjs/internal/Observer";
 import {SnackBarService} from "./snack-bar.service";
 import {NavigationService} from "./navigation.service";
 
@@ -26,7 +25,7 @@ export class LoginService {
       }),
       catchError(err => {
         this.handleDefaultError(err);
-        return of(empty);
+        return of(null);
       })
     ).subscribe();
   }

@@ -85,16 +85,16 @@ export class GenericItemService<T extends Identifiable> {
     );
   }
 
-  private handleActionSuccess(action: Action): void {
+  protected handleActionSuccess(action: Action): void {
     this.snackBarService.openSuccessSnackBar(`${action.toString()} element`);
   }
 
-  private handleResponseFailed(error: string): void {
+  protected handleResponseFailed(error: string): void {
     this.snackBarService.openErrorSnackBar('Podczas przetwarzania zapytania wystąpił błąd');
     console.error(error);
   }
 
-  private handleDefaultError(error: string): void {
+  protected handleDefaultError(error: string): void {
     this.snackBarService.openErrorSnackBar('Wystąpił błąd', error);
   }
 }

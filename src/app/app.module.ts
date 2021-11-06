@@ -25,6 +25,7 @@ import {HallsTableComponent} from "./components/tables/halls-table.component";
 import {HallDetailsComponent} from "./components/hall-details/hall-details.component";
 import {SeansesTableComponent} from "./components/tables/seanses-table.component";
 import {SeanseDetailsComponent} from "./components/seanse-details/seanse-details.component";
+import {DatePipe, TimePipe} from './helpers/date-time.pipe';
 
 
 @NgModule({
@@ -56,6 +57,8 @@ import {SeanseDetailsComponent} from "./components/seanse-details/seanse-details
     HallDetailsComponent,
     SeansesTableComponent,
     SeanseDetailsComponent,
+    DatePipe,
+    TimePipe,
   ],
   entryComponents: [
     UserDetailsComponent,

@@ -1,5 +1,8 @@
 <header>
-  <h1>Zarządzanie seansami</h1>
+  <h1 *ngIf="isAdmin; else headerCasualUser">Zarządzanie seansami</h1>
+  <ng-template #headerCasualUser>
+    <h1>Wybór seansu</h1>
+  </ng-template>
 
   <div class="button-wrapper" *ngIf="isAdmin">
     <button mat-stroked-button color="primary" (click)="onAddItem()"><mat-icon>add</mat-icon>Dodaj</button>
