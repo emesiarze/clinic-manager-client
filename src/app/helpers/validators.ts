@@ -4,7 +4,7 @@ import {Observable} from "rxjs";
 import {LoginService} from "../services/login.service";
 
 export class CommonValidators {
-  private static readonly PASSWORD_ALPHABET = 'qwertyuiopasdfghjklxzcvnbmQWERTYUIOPASDFGHJKLZXCVBNM1234567890-=!@#$%^&*()_+';
+  private static readonly PASSWORD_ALPHABET = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-=!@#$%^&*()_+[]\\;\',./{}|:"<>?';
 
   static passwordValidator = (control: AbstractControl): ValidationErrors | null => {
     if (control && control.value) {

@@ -38,7 +38,7 @@ export class LoginService {
     )
   }
 
-  public logout(): void {
+  public logOut(): void {
     this._authService.logOut();
     this._navigator.navigateToLoginScreen();
   }
