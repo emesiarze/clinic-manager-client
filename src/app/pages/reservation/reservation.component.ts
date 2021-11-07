@@ -81,7 +81,7 @@ export class ReservationComponent implements OnInit, OnDestroy {
   }
 
   private startReservationQueryInterval(): void {
-    interval(5000).pipe(
+    interval(1000).pipe(
       takeUntil(this._destroyed),
       tap(() => this.getReservations())
     ).subscribe()

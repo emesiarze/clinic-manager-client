@@ -4,8 +4,8 @@
 
     <nav>
       <ng-container *ngIf="isAdmin()">
-        <button mat-button [matMenuTriggerFor]="menu"><mat-icon>widgets</mat-icon> Akcje pracownika</button>
-        <mat-menu #menu="matMenu">
+        <button mat-button [matMenuTriggerFor]="adminMenu"><mat-icon>widgets</mat-icon> Akcje pracownika</button>
+        <mat-menu #adminMenu="matMenu">
           <a mat-menu-item [routerLink]="['/manage-seanses']"><mat-icon>video_settings</mat-icon> Zarządzaj seansami</a>
           <a mat-menu-item [routerLink]="['/manage-movies']"><mat-icon>movie</mat-icon> Zarządzaj filmami</a>
           <a mat-menu-item [routerLink]="['/manage-halls']"><mat-icon>room_preferences</mat-icon> Zadządzaj salami</a>
@@ -17,7 +17,11 @@
         <a mat-button [routerLink]="['/seanse-selection']"><mat-icon>live_tv</mat-icon>Wybierz seans</a>
       </ng-container>
 
-      <a mat-button [routerLink]="['/manage-profile']"><mat-icon>account_circle</mat-icon>Edytuj profil</a>
+      <button mat-button [matMenuTriggerFor]="profileMenu"><mat-icon>account_circle</mat-icon>Profil</button>
+      <mat-menu #profileMenu="matMenu">
+        <a mat-menu-item [routerLink]="['/manage-profile']"><mat-icon>edit</mat-icon>Edytuj profil</a>
+        <button mat-menu-item (click)="logout()"><mat-icon color="warn">power_settings_new</mat-icon>Wyloguj</button>
+      </mat-menu>
     </nav>
   </mat-toolbar>
 
