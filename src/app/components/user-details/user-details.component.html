@@ -23,7 +23,7 @@
       </mat-form-field>
     </ng-container>
 
-    <mat-checkbox formControlName="isWorker" color="primary">Pracownik</mat-checkbox>
+    <mat-checkbox *ngIf="isAdmin" formControlName="isWorker" color="primary">Pracownik</mat-checkbox>
   </mat-dialog-content>
 
   <mat-dialog-actions>

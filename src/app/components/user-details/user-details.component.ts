@@ -5,6 +5,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {User} from "../../models/user";
 import {CommonValidators} from "../../helpers/validators";
 import {LoginService} from "../../services/login.service";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-user-details',
@@ -19,7 +20,8 @@ export class UserDetailsComponent implements OnInit {
   constructor(private _fb: FormBuilder,
               private _dialog: MatDialogRef<UserDetailsComponent>,
               @Inject(MAT_DIALOG_DATA) data: ItemDetailsData<User>,
-              private _loginService: LoginService) {
+              private _loginService: LoginService,
+              private _authService: AuthService) {
     this._create = data.create;
     this._user = data.item;
   }
@@ -30,6 +32,10 @@ export class UserDetailsComponent implements OnInit {
 
   get create(): boolean {
     return this._create;
+  }
+
+  get isAdmin(): boolean {
+    return this._authService.isAdmin();
   }
 
   ngOnInit(): void {
