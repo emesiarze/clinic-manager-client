@@ -6,11 +6,11 @@ import {UsersService} from "../../services/users.service";
 import {tap} from "rxjs/operators";
 
 @Component({
-  selector: 'app-manage-profile',
-  templateUrl: './manage-profile.component.html',
-  styleUrls: ['./manage-profile.component.scss']
+  selector: 'app-patient-details',
+  templateUrl: './patient-details.component.html',
+  styleUrls: ['./patient-details.component.scss']
 })
-export class ManageProfileComponent implements OnInit {
+export class PatientDetailsComponent implements OnInit {
   private _form: FormGroup;
 
   constructor(private _fb: FormBuilder, private _usersService: UsersService, private _authService: AuthService) { }
@@ -30,7 +30,7 @@ export class ManageProfileComponent implements OnInit {
   private createForm(): FormGroup {
     return this._fb.group({
       login: { value: this.user.login || undefined, disabled: true },
-      fullName: this.user.fullName || undefined,
+      fullName: { value: this.user.fullName || undefined, disabled: true},
     });
   }
   private createUserFromFrom(): User {
