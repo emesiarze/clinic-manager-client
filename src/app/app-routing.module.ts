@@ -1,11 +1,11 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {LoginComponent} from './pages/login/login.component';
-import {AuthGuard} from "./services/auth.guard";
+import {AuthGuard} from "./services/guards/auth.guard";
 import {ManageUsersComponent} from "./pages/manage-users/manage-users.component";
-import {AdminGuard} from "./services/admin.guard";
+import {AdminOrDoctorGuard} from "./services/guards/admin-or-doctor-guard.service";
 import {PatientDetailsComponent} from "./pages/patient-details/patient-details.component";
-import {LoginGuard} from "./services/login.guard";
+import {LoginGuard} from "./services/guards/login.guard";
 
 const routes: Routes = [
   {
@@ -21,7 +21,7 @@ const routes: Routes = [
   {
     path: 'manage-users',
     component: ManageUsersComponent,
-    canActivate: [AuthGuard, AdminGuard]
+    canActivate: [AuthGuard, AdminOrDoctorGuard]
   },
   {
     path: '**',

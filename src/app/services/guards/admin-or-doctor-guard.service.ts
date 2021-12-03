@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
-import {NavigationService} from "./navigation.service";
-import {AuthService} from "./auth.service";
-import {SnackBarService} from "./snack-bar.service";
+import {NavigationService} from "../navigation.service";
+import {AuthService} from "../auth.service";
+import {SnackBarService} from "../snack-bar.service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class AdminOrDoctorGuard implements CanActivate {
+
   constructor(
     private _navigator: NavigationService,
     private _authService: AuthService,
@@ -18,11 +19,11 @@ export class AuthGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (this._authService.isLoggedIn()) {
+    if (this._authService.isDoctor() || this._authService.isAdmin()) {
       return true;
     } else {
-      this._snackBarService.openErrorSnackBar('Użytkownik nie jest zalogowany.')
-      this._navigator.navigateToLoginScreen();
+      this._snackBarService.openErrorSnackBar('Brak odpowiednich uprawnień.')
+      this._navigator.navigateToHomeScreen();
       return false;
     }
   }

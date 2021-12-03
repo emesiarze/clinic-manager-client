@@ -4,4 +4,5 @@ export interface User {
   login: string;
   password: string;
   isDoctor: boolean;
+  isAdmin: boolean;
 }

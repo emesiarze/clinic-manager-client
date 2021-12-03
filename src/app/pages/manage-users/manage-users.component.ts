@@ -7,6 +7,8 @@ import {MatDialog} from "@angular/material/dialog";
 import {UserDetailsComponent} from "../../components/user-details/user-details.component";
 import {ItemDetailsData} from "../../models/item-details-data";
 import {Observable} from "rxjs";
+import {AuthService} from "../../services/auth.service";
+import {NavigationService} from "../../services/navigation.service";
 
 @Component({
   selector: 'app-manage-users',
@@ -17,7 +19,10 @@ export class ManageUsersComponent implements OnInit {
   private _dataSource = new GenericDataSource<User>([]);
   private _requestCount = 0;
 
-  constructor(private _usersService: UsersService, private _dialogService: MatDialog) { }
+  constructor(private _usersService: UsersService,
+              private _dialogService: MatDialog,
+              private _authService: AuthService,
+              private _navigator: NavigationService) { }
 
   get dataSource(): GenericDataSource<User> {
     return this._dataSource;
@@ -27,13 +32,24 @@ export class ManageUsersComponent implements OnInit {
     return this._requestCount > 0;
   }
 
+  get isDoctor(): boolean {
+    return this._authService.isDoctor();
+  }
+
+  get isAdmin(): boolean {
+    return this._authService.isAdmin();
+  }
+
   ngOnInit(): void {
     this.loadData();
   }
 
   private loadData(): void {
     this._requestCount++;
-    this._usersService.getAllPatients().pipe(
+    (this.isAdmin
+      ? this._usersService.getAllItems()
+      : this._usersService.getAllPatients()
+    ).pipe(
       tap(() => this._requestCount--),
       filter(items => !!items),
       tap(items => this._dataSource.data.next(items!))
@@ -81,6 +97,12 @@ export class ManageUsersComponent implements OnInit {
       width: '50vw',
       maxHeight: '90vh'
     }).afterClosed()
+  }
+
+  public navigateToUserDetails(user: User): void {
+    if (this.isDoctor) {
+      this._navigator.navigateToUserDetails(user);
+    }
   }
   // endregion
 }

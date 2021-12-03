@@ -14,6 +14,10 @@ export class AppComponent {
     return this._authService.isLoggedIn();
   }
 
+  public isDoctor(): boolean {
+    return this._authService.isDoctor();
+  }
+
   public isAdmin(): boolean {
     return this._authService.isAdmin();
   }

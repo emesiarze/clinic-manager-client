@@ -1,12 +1,13 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Identifiable} from "../../models/Identifiable";
 import {GenericDataSource} from "../../models/generic-data-source";
+import {ThemePalette} from "@angular/material/core";
 
 export interface ColumnDefinition {
   defName: string;
   displayName: string;
   propertyName: string;
-  /** Allows to format field.
+  /** Allows formatting field.
    * For example when you want to stringify user object so that
    * first and last name are displayed.
    */
@@ -20,7 +21,7 @@ export interface ActionDefinition {
   /** Rule which determines whether this action can be displayed or not.
    * If no function is set, action will be displayed */
   canDisplay?: () => boolean;
-  color?: string;
+  color?: ThemePalette;
   tooltip?: string;
 }
 

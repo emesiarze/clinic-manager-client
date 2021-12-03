@@ -31,10 +31,10 @@ export class UsersTableComponent extends GenericTableComponent<User>{
         propertyName: 'fullName'
       },
       {
-        defName: 'isWorker',
-        displayName: 'Pracownik',
-        propertyName: 'isWorker',
-        formatter: (isWorker: boolean) => isWorker ? 'Tak' : 'Nie'
+        defName: 'isDoctor',
+        displayName: 'Lekarz',
+        propertyName: 'isDoctor',
+        formatter: (isDoctor: boolean) => isDoctor ? 'Tak' : 'Nie'
       },
     ];
 

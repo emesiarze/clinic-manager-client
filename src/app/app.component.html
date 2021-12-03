@@ -3,8 +3,10 @@
     <h1>Przychodnia</h1>
 
     <nav>
-      <ng-container *ngIf="isAdmin()">
-          <a mat-button [routerLink]="['/manage-users']"><mat-icon>video_settings</mat-icon>Lista pacjentów</a>
+      <ng-container *ngIf="isAdmin() || isDoctor()">
+          <a mat-button [routerLink]="['/manage-users']"><mat-icon>video_settings</mat-icon>
+            Lista {{ isDoctor() ? 'pacjentów' : 'użytkowników'}}
+          </a>
       </ng-container>
 
       <button mat-button [matMenuTriggerFor]="profileMenu"><mat-icon>account_circle</mat-icon> Profil</button>

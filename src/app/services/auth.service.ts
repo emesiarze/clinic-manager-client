@@ -25,7 +25,15 @@ export class AuthService {
     return this._user != undefined;
   }
 
-  public isAdmin(): boolean {
+  public isDoctor(): boolean {
     return this.isLoggedIn() && this.user!.isDoctor;
+  }
+
+  public isAdmin(): boolean {
+    return this.isLoggedIn() && this.user!.isAdmin;
+  }
+
+  public isAdminOrDoctor(): boolean {
+    return this.isLoggedIn() && this.user!.isAdmin || this.user!.isDoctor
   }
 }

@@ -1,7 +1,7 @@
 <header>
-  <h1>Lista pacjentów</h1>
+  <h1>Lista {{ isDoctor ? 'pacjentów' : 'użytkowników'}}</h1>
 
-  <div class="button-wrapper">
+  <div class="button-wrapper" *ngIf="isAdmin">
     <button mat-stroked-button color="primary" (click)="onAddItem()"><mat-icon>add</mat-icon>Dodaj</button>
   </div>
 </header>
@@ -9,9 +9,10 @@
 <app-users-table [dataSource]="dataSource"
                  [isLoading]="isLoading"
                  (itemDeleted)="onDeleteItem($event)"
-                 (itemEdit)="onEditItem($event)">
+                 (itemEdit)="onEditItem($event)"
+                 (itemClick)="navigateToUserDetails($event)">
 </app-users-table>
 
-<div class="button-wrapper m-t-16">
+<div class="button-wrapper m-t-16" *ngIf="isAdmin">
   <button mat-stroked-button color="primary" (click)="onAddItem()"><mat-icon>add</mat-icon>Dodaj</button>
 </div>
