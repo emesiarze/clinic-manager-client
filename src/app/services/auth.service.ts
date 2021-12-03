@@ -26,6 +26,6 @@ export class AuthService {
   }
 
   public isAdmin(): boolean {
-    return this.isLoggedIn() && this.user!.isWorker;
+    return this.isLoggedIn() && this.user!.isDoctor;
   }
 }

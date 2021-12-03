@@ -51,7 +51,7 @@ export class UserDetailsComponent implements OnInit {
       ],
       fullName: [this._user?.fullName || undefined, [Validators.required]],
       password: [this._user?.password || undefined, [Validators.required, CommonValidators.passwordValidator]],
-      isWorker: this._user?.isWorker || false
+      idDoctor: this._user?.isDoctor || false
     });
   }
 
@@ -60,7 +60,7 @@ export class UserDetailsComponent implements OnInit {
       id: this._user?.id,
       fullName: this._form.get('fullName')?.value,
       login: this._form.get('login')?.value,
-      isWorker: this._form.get('isWorker')?.value
+      isDoctor: this._form.get('idDoctor')?.value
     } as User;
 
     this._create ? user.password = this._form.get('password')?.value : {}

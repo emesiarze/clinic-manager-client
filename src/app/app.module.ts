@@ -15,8 +15,8 @@ import {GenericTableComponent} from './components/generic-table/generic-table.co
 import {UsersTableComponent} from './components/tables/users-table.component';
 import {UserDetailsComponent} from "./components/user-details/user-details.component";
 import {HallDetailsComponent} from "./components/hall-details/hall-details.component";
-import {SeansesTableComponent} from "./components/tables/seanses-table.component";
-import {SeanseDetailsComponent} from "./components/seanse-details/seanse-details.component";
+import {DiseasesTableComponent} from "./components/tables/diseases-table.component";
+import {DiseaseDetailsComponent} from "./components/seanse-details/disease-details.component";
 import {DatePipe, TimePipe} from './helpers/date-time.pipe';
 
 
@@ -39,15 +39,15 @@ import {DatePipe, TimePipe} from './helpers/date-time.pipe';
     UsersTableComponent,
     UserDetailsComponent,
     HallDetailsComponent,
-    SeansesTableComponent,
-    SeanseDetailsComponent,
+    DiseasesTableComponent,
+    DiseaseDetailsComponent,
     DatePipe,
     TimePipe,
   ],
   entryComponents: [
     UserDetailsComponent,
     HallDetailsComponent,
-    SeanseDetailsComponent,
+    DiseaseDetailsComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

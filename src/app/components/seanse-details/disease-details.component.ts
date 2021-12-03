@@ -11,24 +11,24 @@ import {Symptom} from "../../models/symptom";
 import {filter, tap} from "rxjs/operators";
 
 @Component({
-  selector: 'app-seanse-details',
-  templateUrl: './seanse-details.component.html',
-  styleUrls: ['./seanse-details.component.scss']
+  selector: 'app-disease-details',
+  templateUrl: './disease-details.component.html',
+  styleUrls: ['./disease-details.component.scss']
 })
-export class SeanseDetailsComponent implements OnInit {
+export class DiseaseDetailsComponent implements OnInit {
   private _form: FormGroup;
   private readonly _create: boolean;
-  private _seanse?: Diagnose;
+  private _diagnose?: Diagnose;
   private readonly _halls$: BehaviorSubject<Symptom[]>;
   private readonly _movies$: BehaviorSubject<Disease[]>;
 
   constructor(private _fb: FormBuilder,
-              private _dialog: MatDialogRef<SeanseDetailsComponent>,
+              private _dialog: MatDialogRef<DiseaseDetailsComponent>,
               @Inject(MAT_DIALOG_DATA) data: ItemDetailsData<Diagnose>,
               private _hallsService: SymptomsService,
               private _moviesService: DiseasesService) {
     this._create = data.create;
-    this._seanse = data.item;
+    this._diagnose = data.item;
     this._halls$ = new BehaviorSubject<Symptom[]>([]);
     this._movies$ = new BehaviorSubject<Disease[]>([]);
   }
@@ -42,48 +42,41 @@ export class SeanseDetailsComponent implements OnInit {
     return this._create;
   }
 
-  get movies(): Observable<Disease[]> {
+  get diseases(): Observable<Disease[]> {
     return this._movies$ as Observable<Disease[]>;
   }
 
-  get halls(): Observable<Symptom[]> {
+  get symptoms(): Observable<Symptom[]> {
     return this._halls$ as Observable<Symptom[]>
   }
   // endregion
 
   ngOnInit(): void {
     this._form = this.buildForm();
-    this.loadHalls();
-    this.loadMovies();
-    this.test()
-  }
-
-  private test() {
-    this.form.get('movieId')?.valueChanges.pipe(
-      tap(console.log)
-    ).subscribe();
+    this.loadSymptoms();
+    this.loadDiseases();
   }
 
   private buildForm(): FormGroup {
-    const startDate = this._seanse?.startTime ? new Date(this._seanse!.startTime) : new Date(Date.now());
+    const startDate = this._diagnose?.diagnoseDate ? new Date(this._diagnose!.diagnoseDate) : new Date(Date.now());
     const date = this.formatDateToHTMLDateTimeInput(startDate);
-    console.log(date);
 
     return this._fb.group({
-      movie: [this._seanse?.movie || undefined, [Validators.required]],
-      hall: [this._seanse?.hall || undefined, [Validators.required]],
-      startTime: [date || false, [Validators.required]]
+      patient: [this._diagnose?.patient || undefined, [Validators.required]],
+      doctor: [this._diagnose?.doctor || undefined, [Validators.required]],
+      disease: [this._diagnose?.disease || undefined, [Validators.required]],
+      diagnoseDate: [date || false, [Validators.required]]
     });
   }
 
-  private loadHalls(): void {
+  private loadSymptoms(): void {
     this._hallsService.getAllItems().pipe(
       filter(result => !!result),
       tap(result => this._halls$.next(result!))
     ).subscribe();
   }
 
-  private loadMovies(): void {
+  private loadDiseases(): void {
     this._moviesService.getAllItems().pipe(
       filter(result => !!result),
       tap(result => this._movies$.next(result!)),
@@ -92,10 +85,11 @@ export class SeanseDetailsComponent implements OnInit {
 
   private parseForm(): Diagnose {
     return {
-      id: this._seanse?.id,
-      movieId: this._form.get('movie')?.value.id,
-      hallId: this._form.get('hall')?.value.id,
-      startTime: this._form.get('startTime')?.value
+      id: this._diagnose?.id,
+      patient: this._form.get('patient')?.value,
+      doctor: this._form.get('patient')?.value,
+      disease: this._form.get('disease')?.value,
+      diagnoseDate: this._form.get('diagnoseDate')?.value
     } as Diagnose;
   }
 
@@ -120,9 +114,9 @@ export class SeanseDetailsComponent implements OnInit {
     else return '';
   }
 
-  public hallsDisplayWith = (hall: Symptom) => hall ? hall.name : '';
+  public hallsDisplayWith = (symptom: Symptom) => symptom ? symptom.name : '';
 
-  public moviesDisplayWith = (movie: Disease) => movie ? movie.title : '';
+  public moviesDisplayWith = (disease: Disease) => disease ? disease.name : '';
 
   private formatDateToHTMLDateTimeInput = (date: Date) => {
     const yyyy = date.getFullYear();

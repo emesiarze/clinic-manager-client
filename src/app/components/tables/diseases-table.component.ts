@@ -7,11 +7,11 @@ import {Symptom} from "../../models/symptom";
 import {Disease} from "../../models/disease";
 
 @Component({
-  selector: 'app-seanses-table',
+  selector: 'app-diseases-table',
   templateUrl: '../generic-table/generic-table.component.html',
   styleUrls: ['../generic-table/generic-table.component.scss']
 })
-export class SeansesTableComponent extends GenericTableComponent<Diagnose>{
+export class DiseasesTableComponent extends GenericTableComponent<Diagnose>{
 
   constructor(private _authService: AuthService) {
     super();
@@ -23,21 +23,21 @@ export class SeansesTableComponent extends GenericTableComponent<Diagnose>{
         formatter: (id: string) => id.substr(0, 5)
       },
       {
-        defName: 'movie',
-        displayName: 'Film',
-        propertyName: 'movie',
-        formatter: (movie: Disease) => movie.title
+        defName: 'disease',
+        displayName: 'Choroba',
+        propertyName: 'disease',
+        formatter: (disease: Disease) => disease.name
       },
       {
-        defName: 'hall',
-        displayName: 'Sala',
-        propertyName: 'hall',
-        formatter: (hall: Symptom) => hall.name
+        defName: 'symptom',
+        displayName: 'Występujące objawy',
+        propertyName: 'symptom',
+        formatter: (symptom: Symptom) => symptom.name
       },
       {
-        defName: 'startTime',
-        displayName: 'Czas rozpoczęcia',
-        propertyName: 'startTime',
+        defName: 'diagnoseDate',
+        displayName: 'Data zdiagnozowania',
+        propertyName: 'diagnoseDate',
         formatter: (date: Date) => new Date(date).toLocaleString('pl-PL')
       }
     ];

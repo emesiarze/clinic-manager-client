@@ -7,8 +7,8 @@
       <input matInput type="text" formControlName="movie" [matAutocomplete]="movieAutocomplete">
 
       <mat-autocomplete #movieAutocomplete="matAutocomplete" [displayWith]="moviesDisplayWith">
-        <mat-option *ngFor="let option of movies | async" [value]="option">
-          {{ option.title }}
+        <mat-option *ngFor="let option of diseases | async" [value]="option">
+          {{ option.name }}
         </mat-option>
       </mat-autocomplete>
 
@@ -20,7 +20,7 @@
       <input matInput type="text" formControlName="hall" [matAutocomplete]="hallAutocomplete">
 
       <mat-autocomplete #hallAutocomplete="matAutocomplete" [displayWith]="hallsDisplayWith">
-        <mat-option *ngFor="let option of halls | async" [value]="option">
+        <mat-option *ngFor="let option of symptoms | async" [value]="option">
           {{ option.name }}
         </mat-option>
       </mat-autocomplete>

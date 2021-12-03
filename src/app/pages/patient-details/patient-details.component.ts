@@ -38,7 +38,7 @@ export class PatientDetailsComponent implements OnInit {
       id: this.user.id,
       fullName: this._form.get('fullName')!.value,
       login: this.form.get('login')!.value,
-      isWorker: this.user.isWorker
+      isDoctor: this.user.isDoctor
     } as User;
   }
 
