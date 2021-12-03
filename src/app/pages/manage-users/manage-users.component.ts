@@ -33,7 +33,7 @@ export class ManageUsersComponent implements OnInit {
 
   private loadData(): void {
     this._requestCount++;
-    this._usersService.getAllItems().pipe(
+    this._usersService.getAllPatients().pipe(
       tap(() => this._requestCount--),
       filter(items => !!items),
       tap(items => this._dataSource.data.next(items!))

@@ -4,7 +4,7 @@
 
     <nav>
       <ng-container *ngIf="isAdmin()">
-          <a mat-menu-item [routerLink]="['/manage-users']"><mat-icon>video_settings</mat-icon>Lista pacjentów</a>
+          <a mat-button [routerLink]="['/manage-users']"><mat-icon>video_settings</mat-icon>Lista pacjentów</a>
       </ng-container>
 
       <button mat-button [matMenuTriggerFor]="profileMenu"><mat-icon>account_circle</mat-icon> Profil</button>

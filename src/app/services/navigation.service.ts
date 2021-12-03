@@ -16,8 +16,8 @@ export class NavigationService {
 
   public navigateToHomeScreen(): void {
     this._authService.isAdmin()
-      ? this._router.navigate(['/manage-seanses'])
-      : this._router.navigate(['/seanse-selection']);
+      ? this._router.navigate(['/manage-users'])
+      : this._router.navigate(['/profile-details']);
   }
 
   public navigateToLoginScreen(): void {
