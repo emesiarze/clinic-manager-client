@@ -1,13 +1,13 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Seanse} from "../../models/seanse";
+import {Diagnose} from "../../models/diagnose";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {ItemDetailsData} from "../../models/item-details-data";
 import {BehaviorSubject, Observable} from "rxjs";
-import {MoviesService} from "../../services/movies.service";
-import {Movie} from "../../models/movie";
-import {HallsService} from "../../services/halls.service";
-import {Hall} from "../../models/hall";
+import {DiseasesService} from "../../services/diseases.service";
+import {Disease} from "../../models/disease";
+import {SymptomsService} from "../../services/symptoms.service";
+import {Symptom} from "../../models/symptom";
 import {filter, tap} from "rxjs/operators";
 
 @Component({
@@ -18,19 +18,19 @@ import {filter, tap} from "rxjs/operators";
 export class SeanseDetailsComponent implements OnInit {
   private _form: FormGroup;
   private readonly _create: boolean;
-  private _seanse?: Seanse;
-  private readonly _halls$: BehaviorSubject<Hall[]>;
-  private readonly _movies$: BehaviorSubject<Movie[]>;
+  private _seanse?: Diagnose;
+  private readonly _halls$: BehaviorSubject<Symptom[]>;
+  private readonly _movies$: BehaviorSubject<Disease[]>;
 
   constructor(private _fb: FormBuilder,
               private _dialog: MatDialogRef<SeanseDetailsComponent>,
-              @Inject(MAT_DIALOG_DATA) data: ItemDetailsData<Seanse>,
-              private _hallsService: HallsService,
-              private _moviesService: MoviesService) {
+              @Inject(MAT_DIALOG_DATA) data: ItemDetailsData<Diagnose>,
+              private _hallsService: SymptomsService,
+              private _moviesService: DiseasesService) {
     this._create = data.create;
     this._seanse = data.item;
-    this._halls$ = new BehaviorSubject<Hall[]>([]);
-    this._movies$ = new BehaviorSubject<Movie[]>([]);
+    this._halls$ = new BehaviorSubject<Symptom[]>([]);
+    this._movies$ = new BehaviorSubject<Disease[]>([]);
   }
 
   // region Getters
@@ -42,12 +42,12 @@ export class SeanseDetailsComponent implements OnInit {
     return this._create;
   }
 
-  get movies(): Observable<Movie[]> {
-    return this._movies$ as Observable<Movie[]>;
+  get movies(): Observable<Disease[]> {
+    return this._movies$ as Observable<Disease[]>;
   }
 
-  get halls(): Observable<Hall[]> {
-    return this._halls$ as Observable<Hall[]>
+  get halls(): Observable<Symptom[]> {
+    return this._halls$ as Observable<Symptom[]>
   }
   // endregion
 
@@ -90,13 +90,13 @@ export class SeanseDetailsComponent implements OnInit {
     ).subscribe();
   }
 
-  private parseForm(): Seanse {
+  private parseForm(): Diagnose {
     return {
       id: this._seanse?.id,
       movieId: this._form.get('movie')?.value.id,
       hallId: this._form.get('hall')?.value.id,
       startTime: this._form.get('startTime')?.value
-    } as Seanse;
+    } as Diagnose;
   }
 
   public onSubmit(): void {
@@ -120,9 +120,9 @@ export class SeanseDetailsComponent implements OnInit {
     else return '';
   }
 
-  public hallsDisplayWith = (hall: Hall) => hall ? hall.name : '';
+  public hallsDisplayWith = (hall: Symptom) => hall ? hall.name : '';
 
-  public moviesDisplayWith = (movie: Movie) => movie ? movie.title : '';
+  public moviesDisplayWith = (movie: Disease) => movie ? movie.title : '';
 
   private formatDateToHTMLDateTimeInput = (date: Date) => {
     const yyyy = date.getFullYear();

@@ -1,17 +1,17 @@
 import {Component} from '@angular/core';
 import {GenericTableComponent} from "../generic-table/generic-table.component";
-import {Seanse} from "../../models/seanse";
+import {Diagnose} from "../../models/diagnose";
 import {AuthService} from "../../services/auth.service";
 import {Identifiable} from "../../models/Identifiable";
-import {Hall} from "../../models/hall";
-import {Movie} from "../../models/movie";
+import {Symptom} from "../../models/symptom";
+import {Disease} from "../../models/disease";
 
 @Component({
   selector: 'app-seanses-table',
   templateUrl: '../generic-table/generic-table.component.html',
   styleUrls: ['../generic-table/generic-table.component.scss']
 })
-export class SeansesTableComponent extends GenericTableComponent<Seanse>{
+export class SeansesTableComponent extends GenericTableComponent<Diagnose>{
 
   constructor(private _authService: AuthService) {
     super();
@@ -26,13 +26,13 @@ export class SeansesTableComponent extends GenericTableComponent<Seanse>{
         defName: 'movie',
         displayName: 'Film',
         propertyName: 'movie',
-        formatter: (movie: Movie) => movie.title
+        formatter: (movie: Disease) => movie.title
       },
       {
         defName: 'hall',
         displayName: 'Sala',
         propertyName: 'hall',
-        formatter: (hall: Hall) => hall.name
+        formatter: (hall: Symptom) => hall.name
       },
       {
         defName: 'startTime',
@@ -46,7 +46,7 @@ export class SeansesTableComponent extends GenericTableComponent<Seanse>{
       {
         icon: 'edit',
         action: (item: Identifiable) => {
-          this.emitEdit(item as Seanse);
+          this.emitEdit(item as Diagnose);
         },
         canDisplay: (): boolean => {
           return this._authService.isAdmin();

@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Hall} from "../../models/hall";
+import {Symptom} from "../../models/symptom";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {ItemDetailsData} from "../../models/item-details-data";
 
@@ -12,11 +12,11 @@ import {ItemDetailsData} from "../../models/item-details-data";
 export class HallDetailsComponent implements OnInit {
   private _form: FormGroup;
   private readonly _create: boolean;
-  private _hall?: Hall;
+  private _hall?: Symptom;
 
   constructor(private _fb: FormBuilder,
               private _dialog: MatDialogRef<HallDetailsComponent>,
-              @Inject(MAT_DIALOG_DATA) data: ItemDetailsData<Hall>) {
+              @Inject(MAT_DIALOG_DATA) data: ItemDetailsData<Symptom>) {
     this._create = data.create;
     this._hall = data.item;
   }
@@ -39,11 +39,11 @@ export class HallDetailsComponent implements OnInit {
     });
   }
 
-  private parseForm(): Hall {
+  private parseForm(): Symptom {
     return {
       id: this._hall?.id,
       name: this._form.get('name')?.value,
-    } as Hall;
+    } as Symptom;
   }
 
   public onSubmit(): void {

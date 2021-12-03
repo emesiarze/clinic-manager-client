@@ -1,4 +1,4 @@
-export interface Hall {
+export interface Symptom {
   id: string;
   name: string;
 }

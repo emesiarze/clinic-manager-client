@@ -1,13 +1,13 @@
 import {Injectable} from "@angular/core";
 import {GenericControllerService} from "./generic-controller.service";
-import {Seanse} from "../../models/seanse";
+import {Diagnose} from "../../models/diagnose";
 import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
 })
-export class SeansesControllerService extends GenericControllerService<Seanse> {
-  protected _endpointUrl = 'seanses';
+export class DiagnosesControllerService extends GenericControllerService<Diagnose> {
+  protected _endpointUrl = 'diagnoses';
 
   constructor(http: HttpClient) {
     super(http);
