@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "cinema-manager-client": {
+    "clinic-manager-client": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/cinema-manager-client",
+            "outputPath": "dist/clinic-manager-client",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -77,10 +77,10 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "cinema-manager-client:build:production"
+              "browserTarget": "clinic-manager-client:build:production"
             },
             "development": {
-              "browserTarget": "cinema-manager-client:build:development"
+              "browserTarget": "clinic-manager-client:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -88,7 +88,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "cinema-manager-client:build"
+            "browserTarget": "clinic-manager-client:build"
           }
         },
         "test": {
@@ -113,5 +113,5 @@
       }
     }
   },
-  "defaultProject": "cinema-manager-client"
+  "defaultProject": "clinic-manager-client"
 }
