@@ -15,7 +15,7 @@ import {GenericTableComponent} from './components/generic-table/generic-table.co
 import {UsersTableComponent} from './components/tables/users-table.component';
 import {PatientModificationDialogComponent} from "./components/patient-modification-dialog/patient-modification-dialog.component";
 import {HallDetailsComponent} from "./components/hall-details/hall-details.component";
-import {DiseasesTableComponent} from "./components/tables/diseases-table.component";
+import {DiagnosesTableComponent} from "./components/tables/diagnoses-table.component";
 import {DiseaseDetailsComponent} from "./components/seanse-details/disease-details.component";
 import {DatePipe, TimePipe} from './helpers/date-time.pipe';
 
@@ -39,7 +39,7 @@ import {DatePipe, TimePipe} from './helpers/date-time.pipe';
     UsersTableComponent,
     PatientDetailsComponent,
     HallDetailsComponent,
-    DiseasesTableComponent,
+    DiagnosesTableComponent,
     DiseaseDetailsComponent,
     DatePipe,
     TimePipe,

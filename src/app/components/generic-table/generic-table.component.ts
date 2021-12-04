@@ -6,6 +6,9 @@ import {ThemePalette} from "@angular/material/core";
 export interface ColumnDefinition {
   defName: string;
   displayName: string;
+  /** Name of property which value will be passed to
+   * formatter or just displayed if formatter is not defined.
+   */
   propertyName: string;
   /** Allows formatting field.
    * For example when you want to stringify user object so that
@@ -53,7 +56,10 @@ export class GenericTableComponent<T extends Identifiable> {
   }
 
   get columnsToDisplay(): string[] {
-    return this._columnsDefinitions.map(item => item.defName).concat(this.actionsDefined ? 'actions' : '').filter(col => !!col);
+    return this._columnsDefinitions
+      .map(item => item.defName)
+      .concat(this.actionsDefined ? 'actions' : '')
+      .filter(col => !!col);
   }
 
   get columnsDefinitions(): ColumnDefinition[] {
@@ -65,7 +71,9 @@ export class GenericTableComponent<T extends Identifiable> {
   }
 
   get availableActions(): ActionDefinition[] {
-    return this._actionsDefinitions.filter(action => !action || !!action && action.canDisplay && action.canDisplay());
+    return this._actionsDefinitions.filter(action =>
+      !action || !!action && action.canDisplay && action.canDisplay()
+    );
   }
 
   get isLoading(): boolean {

@@ -4,6 +4,9 @@ import {AuthService} from "../../services/auth.service";
 import {User} from "../../models/user";
 import {UsersService} from "../../services/users.service";
 import {tap} from "rxjs/operators";
+import {Diagnose} from "../../models/diagnose";
+import {DiagnosesService} from "../../services/diagnoses.service";
+import { GenericDataSource } from 'src/app/models/generic-data-source';
 
 @Component({
   selector: 'app-patient-details',
@@ -12,44 +15,42 @@ import {tap} from "rxjs/operators";
 })
 export class PatientDetailsComponent implements OnInit {
   private _form: FormGroup;
+  private _user: User;
+  private _diagnosesDataSource = new GenericDataSource<Diagnose>([]);
 
-  constructor(private _fb: FormBuilder, private _usersService: UsersService, private _authService: AuthService) { }
+  constructor(private _fb: FormBuilder,
+              private _usersService: UsersService,
+              private _diganosesService: DiagnosesService,
+              private _authService: AuthService,
+
+  ) { }
+
+  get diagnosesDataSource(): GenericDataSource<Diagnose> {
+    return this._diagnosesDataSource;
+  }
 
   get form(): FormGroup {
     return this._form;
   }
 
-  private get user(): User {
-    return this._authService.user!;
+  ngOnInit(): void {
+    this._user = this._diganosesService.selectedUser;
+    this._form = this.createForm();
+    this.getUserDiagnoses();
   }
 
-  ngOnInit(): void {
-    this._form = this.createForm();
+  private getUserDiagnoses(): void {
+    this._diganosesService.getAllUseDiagnoses(this._user.id).pipe(
+      tap(diagnoses => {
+        if (!!diagnoses) this._diagnosesDataSource.data.next(diagnoses)
+      })
+    ).subscribe()
   }
 
   private createForm(): FormGroup {
     return this._fb.group({
-      login: { value: this.user?.login || undefined, disabled: true },
-      fullName: { value: this.user?.fullName || undefined, disabled: true},
+      login: { value: this._user?.login || undefined, disabled: true },
+      fullName: { value: this._user?.fullName || undefined, disabled: true},
     });
-  }
-  private createUserFromFrom(): User {
-    return {
-      id: this.user.id,
-      fullName: this._form.get('fullName')!.value,
-      login: this.form.get('login')!.value,
-      isDoctor: this.user.isDoctor
-    } as User;
-  }
-
-  public updateUser(): void {
-    const user = this.createUserFromFrom();
-    this._usersService.updateItem(user).pipe(
-      tap(value => {
-        value
-          ? this._authService.user!.fullName = this.form.get('fullName')?.value
-          : this.form.get('fullName')?.patchValue(this._authService.user!.fullName);
-      })
-    ).subscribe();
   }
 }

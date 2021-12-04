@@ -9,6 +9,7 @@ import {ItemDetailsData} from "../../models/item-details-data";
 import {Observable} from "rxjs";
 import {AuthService} from "../../services/auth.service";
 import {NavigationService} from "../../services/navigation.service";
+import {DiagnosesService} from "../../services/diagnoses.service";
 
 @Component({
   selector: 'app-manage-users',
@@ -21,6 +22,7 @@ export class ManageUsersComponent implements OnInit {
 
   constructor(private _usersService: UsersService,
               private _dialogService: MatDialog,
+              private _diagnosesService: DiagnosesService,
               private _authService: AuthService,
               private _navigator: NavigationService) { }
 
@@ -101,6 +103,7 @@ export class ManageUsersComponent implements OnInit {
 
   public navigateToUserDetails(user: User): void {
     if (this.isDoctor) {
+      this._diagnosesService.selectedUser = user
       this._navigator.navigateToUserDetails(user);
     }
   }

@@ -1,4 +1,5 @@
-<form [formGroup]="form" (ngSubmit)="updateUser()">
+<form [formGroup]="form">
+  <h2 title>Dane osobowe</h2>
   <mat-form-field appearance="outline">
     <mat-label>Login</mat-label>
     <input matInput formControlName="login">
@@ -8,4 +9,7 @@
     <mat-label>Pełna nazwa użytkownika</mat-label>
     <input matInput formControlName="fullName">
   </mat-form-field>
+
+  <h2 title>Postawione diagnozy</h2>
+  <app-diagnoses-table [dataSource]="diagnosesDataSource"></app-diagnoses-table>
 </form>
