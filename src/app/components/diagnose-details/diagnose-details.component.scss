@@ -1,0 +1,22 @@
+mat-dialog-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.mat-dialog-content {
+  max-height: initial;
+}
+
+h1 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mat-input-element:disabled {
+  color: black;
+}
+
+mat-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+}

@@ -7,6 +7,8 @@ import {tap} from "rxjs/operators";
 import {Diagnose} from "../../models/diagnose";
 import {DiagnosesService} from "../../services/diagnoses.service";
 import { GenericDataSource } from 'src/app/models/generic-data-source';
+import {MatDialog} from "@angular/material/dialog";
+import {DiagnoseDetailsComponent} from "../../components/diagnose-details/diagnose-details.component";
 
 @Component({
   selector: 'app-patient-details',
@@ -21,6 +23,7 @@ export class PatientDetailsComponent implements OnInit {
   constructor(private _fb: FormBuilder,
               private _usersService: UsersService,
               private _diganosesService: DiagnosesService,
+              private _dialogService: MatDialog,
               private _authService: AuthService,
 
   ) { }
@@ -52,5 +55,13 @@ export class PatientDetailsComponent implements OnInit {
       login: { value: this._user?.login || undefined, disabled: true },
       fullName: { value: this._user?.fullName || undefined, disabled: true},
     });
+  }
+
+  public openDiagnoseDetails(diagnose: Diagnose): void {
+    this._dialogService.open(DiagnoseDetailsComponent, {
+      data: diagnose,
+      width: '50vw',
+      maxHeight: '90vh'
+    })
   }
 }

@@ -11,5 +11,7 @@
   </mat-form-field>
 
   <h2 title>Postawione diagnozy</h2>
-  <app-diagnoses-table [dataSource]="diagnosesDataSource"></app-diagnoses-table>
+  <app-diagnoses-table [dataSource]="diagnosesDataSource"
+                       (itemClick)="openDiagnoseDetails($event)">
+  </app-diagnoses-table>
 </form>

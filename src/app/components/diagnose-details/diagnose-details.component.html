@@ -1,0 +1,31 @@
+<form [formGroup]="form">
+  <mat-card-title>
+    <h1><span>Diagnoza</span><span>{{diagnose?.diagnoseDate | date}}</span></h1>
+  </mat-card-title>
+
+  <mat-dialog-content>
+    <mat-form-field appearance="outline">
+      <mat-label>Pacjent</mat-label>
+      <input matInput formControlName="patient">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Lekarz stawiajacy diagnozę</mat-label>
+      <input matInput formControlName="doctor">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Diagnoza</mat-label>
+      <input matInput formControlName="disease">
+    </mat-form-field>
+
+    <h2 title>Występujące objawy</h2>
+    <mat-list>
+      <mat-list-item *ngFor="let symptom of diagnose?.symptomsExperienced">{{ symptom.name }}</mat-list-item>
+    </mat-list>
+
+  </mat-dialog-content>
+  <mat-dialog-actions>
+      <button mat-button type="button" (click)="closeDialog()">Zamknij</button>
+  </mat-dialog-actions>
+</form>
