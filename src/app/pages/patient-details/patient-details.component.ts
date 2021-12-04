@@ -29,8 +29,8 @@ export class PatientDetailsComponent implements OnInit {
 
   private createForm(): FormGroup {
     return this._fb.group({
-      login: { value: this.user.login || undefined, disabled: true },
-      fullName: { value: this.user.fullName || undefined, disabled: true},
+      login: { value: this.user?.login || undefined, disabled: true },
+      fullName: { value: this.user?.fullName || undefined, disabled: true},
     });
   }
   private createUserFromFrom(): User {

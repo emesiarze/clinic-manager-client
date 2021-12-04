@@ -13,7 +13,7 @@ import {ManageUsersComponent} from './pages/manage-users/manage-users.component'
 import {PatientDetailsComponent} from './pages/patient-details/patient-details.component';
 import {GenericTableComponent} from './components/generic-table/generic-table.component';
 import {UsersTableComponent} from './components/tables/users-table.component';
-import {UserDetailsComponent} from "./components/user-details/user-details.component";
+import {PatientModificationDialogComponent} from "./components/patient-modification-dialog/patient-modification-dialog.component";
 import {HallDetailsComponent} from "./components/hall-details/hall-details.component";
 import {DiseasesTableComponent} from "./components/tables/diseases-table.component";
 import {DiseaseDetailsComponent} from "./components/seanse-details/disease-details.component";
@@ -34,10 +34,10 @@ import {DatePipe, TimePipe} from './helpers/date-time.pipe';
     AppComponent,
     LoginComponent,
     ManageUsersComponent,
-    PatientDetailsComponent,
+    PatientModificationDialogComponent,
     GenericTableComponent,
     UsersTableComponent,
-    UserDetailsComponent,
+    PatientDetailsComponent,
     HallDetailsComponent,
     DiseasesTableComponent,
     DiseaseDetailsComponent,
@@ -45,7 +45,7 @@ import {DatePipe, TimePipe} from './helpers/date-time.pipe';
     TimePipe,
   ],
   entryComponents: [
-    UserDetailsComponent,
+    PatientModificationDialogComponent,
     HallDetailsComponent,
     DiseaseDetailsComponent,
   ],

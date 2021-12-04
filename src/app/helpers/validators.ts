@@ -18,7 +18,7 @@ export class CommonValidators {
     return null;
   }
 
-  static loginValidator = (loginService: LoginService): AsyncValidatorFn => {
+  static loginAsyncValidator = (loginService: LoginService): AsyncValidatorFn => {
    return (control: AbstractControl): Observable<ValidationErrors | null> => {
      const login = control.value;
      return loginService.doesLoginExists(login).pipe(

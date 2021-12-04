@@ -8,17 +8,17 @@ import {LoginService} from "../../services/login.service";
 import {AuthService} from "../../services/auth.service";
 
 @Component({
-  selector: 'app-user-details',
-  templateUrl: './user-details.component.html',
-  styleUrls: ['./user-details.component.scss']
+  selector: 'app-patient-modification-dialog',
+  templateUrl: './patient-modification-dialog.component.html',
+  styleUrls: ['./patient-modification-dialog.component.scss']
 })
-export class UserDetailsComponent implements OnInit {
+export class PatientModificationDialogComponent implements OnInit {
   private _form: FormGroup;
   private readonly _create: boolean;
   private _user?: User;
 
   constructor(private _fb: FormBuilder,
-              private _dialog: MatDialogRef<UserDetailsComponent>,
+              private _dialog: MatDialogRef<PatientModificationDialogComponent>,
               @Inject(MAT_DIALOG_DATA) data: ItemDetailsData<User>,
               private _loginService: LoginService,
               private _authService: AuthService) {
@@ -47,7 +47,7 @@ export class UserDetailsComponent implements OnInit {
       login: [
         { value: this._user?.login || undefined, disabled: !this._create },
         [Validators.required],
-        [CommonValidators.loginValidator(this._loginService)]
+        [CommonValidators.loginAsyncValidator(this._loginService)]
       ],
       fullName: [this._user?.fullName || undefined, [Validators.required]],
       password: [this._user?.password || undefined, [Validators.required, CommonValidators.passwordValidator]],

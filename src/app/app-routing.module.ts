@@ -16,7 +16,7 @@ const routes: Routes = [
   {
     path: 'patient-details',
     component: PatientDetailsComponent,
-    canActivate: [AuthGuard]
+    canActivate: []
   },
   {
     path: 'manage-users',
@@ -25,7 +25,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'login'
+    redirectTo: 'patient-details'
   }
 ];
 

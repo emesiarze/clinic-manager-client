@@ -4,7 +4,7 @@ import {User} from "../../models/user";
 import {filter, switchMap, tap} from "rxjs/operators";
 import {GenericDataSource} from "../../models/generic-data-source";
 import {MatDialog} from "@angular/material/dialog";
-import {UserDetailsComponent} from "../../components/user-details/user-details.component";
+import {PatientModificationDialogComponent} from "../../components/patient-modification-dialog/patient-modification-dialog.component";
 import {ItemDetailsData} from "../../models/item-details-data";
 import {Observable} from "rxjs";
 import {AuthService} from "../../services/auth.service";
@@ -89,7 +89,7 @@ export class ManageUsersComponent implements OnInit {
   }
 
   private openDialogAndWaitForClosure(create = true, user?: User): Observable<any> {
-    return this._dialogService.open(UserDetailsComponent, {
+    return this._dialogService.open(PatientModificationDialogComponent, {
       data: {
         create: create,
         item: user

@@ -4,7 +4,7 @@ import {LoginService} from 'src/app/services/login.service';
 import {filter, switchMap} from "rxjs/operators";
 import {User} from "../../models/user";
 import {Observable} from "rxjs";
-import {UserDetailsComponent} from "../../components/user-details/user-details.component";
+import {PatientModificationDialogComponent} from "../../components/patient-modification-dialog/patient-modification-dialog.component";
 import {ItemDetailsData} from "../../models/item-details-data";
 import {MatDialog} from "@angular/material/dialog";
 import {UsersService} from "../../services/users.service";
@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
   }
 
   private openDialogAndWaitForClosure(): Observable<any> {
-    return this._dialogService.open(UserDetailsComponent, {
+    return this._dialogService.open(PatientModificationDialogComponent, {
       data: {
         create: true,
       } as ItemDetailsData<User>,
