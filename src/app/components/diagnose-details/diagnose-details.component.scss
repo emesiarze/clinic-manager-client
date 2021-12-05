@@ -25,6 +25,7 @@ mat-list {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  margin-bottom: 32px;
 
   li {
     margin-left: 8px;
@@ -35,4 +36,9 @@ mat-list {
       margin-left: 0;
     }
   }
+}
+
+.highlighted {
+  color: rebeccapurple;
+  font-weight: bold;
 }

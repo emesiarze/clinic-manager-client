@@ -4,6 +4,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {Diagnose} from "../../models/diagnose";
 import {TranslatePipe} from "../../helpers/translate.pipe";
 import {Disease} from "../../models/disease";
+import {Symptom} from "../../models/symptom";
 
 @Component({
   selector: 'app-diagnose-details',
@@ -44,6 +45,18 @@ export class DiagnoseDetailsComponent implements OnInit {
       symptomsExperienced: this._fb.array(this._diagnose.symptomsExperienced ? this._diagnose?.symptomsExperienced : []),
       diagnoseDate: { value: this._diagnose.diagnoseDate || undefined, disabled: true }
     })
+  }
+
+  public isBothInDiseaseAndExperiencedSymptoms(symptom: Symptom): boolean {
+    return this.isInDiagnosedDiseaseSymptoms(symptom) && this.isInExperiencedSymptoms(symptom);
+  }
+
+  public isInDiagnosedDiseaseSymptoms(symptom: Symptom): boolean {
+    return this._diagnose.disease.symptoms.map(smpt => smpt.id).includes(symptom.id)
+  }
+
+  public isInExperiencedSymptoms(symptom: Symptom): boolean {
+    return this._diagnose.symptomsExperienced.map(smpt => smpt.id).includes(symptom.id)
   }
 
   private translateDisease(disease: Disease): string {

@@ -21,7 +21,18 @@
 
     <h2 title>Występujące objawy</h2>
     <mat-list>
-      <li *ngFor="let symptom of diagnose?.symptomsExperienced">{{ symptom.name | translate }}</li>
+      <li *ngFor="let symptom of diagnose?.symptomsExperienced"
+          [ngClass]="{ 'highlighted': isBothInDiseaseAndExperiencedSymptoms(symptom) }">
+        {{ symptom.name | translate }}
+      </li>
+    </mat-list>
+
+    <h2 title>Objawy charakterystyczne dla choroby</h2>
+    <mat-list>
+      <li *ngFor="let symptom of diagnose?.disease?.symptoms"
+          [ngClass]="{ 'highlighted': isBothInDiseaseAndExperiencedSymptoms(symptom) }">
+        {{ symptom.name | translate }}
+      </li>
     </mat-list>
   </mat-dialog-content>
 
