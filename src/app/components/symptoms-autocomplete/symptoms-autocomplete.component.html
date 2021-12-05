@@ -1,0 +1,26 @@
+<mat-form-field appearance="outline">
+  <mat-label *ngIf="!!label">{{ label }}</mat-label>
+  <input #input matInput type="text" [matAutocomplete]="auto"
+    (keyup)="onKeyUp($event)" (mousedown)="refocus()" placeholder="{{ label }}">
+
+  <button mat-icon-button matSuffix (click)="clearSelection()">
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-form-field>
+
+<mat-autocomplete #auto="matAutocomplete" [displayWith]="transformItem">
+  <mat-option *ngIf="queryTooShort">
+    Wpisz więcej znaków
+  </mat-option>
+
+  <mat-option *ngIf="!!filteredSymptoms && filteredSymptoms.length === 0 && !queryTooShort">
+    Nie znaleziono elementów
+  </mat-option>
+
+  <mat-option *ngFor="let item of filteredSymptoms" [value]="item" (click)="onSelectionChange(item)">
+    <span>{{ transformItem(item) }}</span>
+    <button mat-icon-button>
+      <mat-icon>add</mat-icon>
+    </button>
+  </mat-option>
+</mat-autocomplete>

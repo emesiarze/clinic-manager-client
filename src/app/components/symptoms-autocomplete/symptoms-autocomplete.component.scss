@@ -1,0 +1,11 @@
+@import '../../../variables';
+
+mat-form-field {
+  box-sizing: border-box;
+  width: 100%;
+  flex: 1 1;
+}
+
+button {
+  margin-left: $spacing-small;
+}

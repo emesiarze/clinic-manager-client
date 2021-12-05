@@ -11,6 +11,8 @@ import {CommonMaterialModule} from "../common-material.module";
 import {DiagnoseDetailsComponent} from './diagnose-details/diagnose-details.component';
 import {CommonFormsModule} from "../common-forms.module";
 import {TranslatePipe} from "../helpers/translate.pipe";
+import { CreateDiagnoseComponent } from './create-diagnose/create-diagnose.component';
+import {SymptomsAutocompleteComponent} from "./symptoms-autocomplete/symptoms-autocomplete.component";
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import {TranslatePipe} from "../helpers/translate.pipe";
     ActionSnackBarComponent,
     DiagnoseDetailsComponent,
     TranslatePipe,
+    CreateDiagnoseComponent,
+    SymptomsAutocompleteComponent,
   ],
   imports: [
     CommonModule,
@@ -37,6 +41,8 @@ import {TranslatePipe} from "../helpers/translate.pipe";
     ErrorSnackBarComponent,
     ActionSnackBarComponent,
     TranslatePipe,
+    CreateDiagnoseComponent,
+    SymptomsAutocompleteComponent
   ]
 })
 export class CommonComponentsModule { }
