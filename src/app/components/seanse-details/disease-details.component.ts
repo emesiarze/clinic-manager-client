@@ -4,9 +4,9 @@ import {Diagnose} from "../../models/diagnose";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {ItemDetailsData} from "../../models/item-details-data";
 import {BehaviorSubject, Observable} from "rxjs";
-import {DiseasesService} from "../../services/diseases.service";
+import {DiseasesService} from "../../services/rest/diseases.service";
 import {Disease} from "../../models/disease";
-import {SymptomsService} from "../../services/symptoms.service";
+import {SymptomsService} from "../../services/rest/symptoms.service";
 import {Symptom} from "../../models/symptom";
 import {filter, tap} from "rxjs/operators";
 

@@ -2,14 +2,15 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {AuthService} from "../../services/auth.service";
 import {User} from "../../models/user";
-import {UsersService} from "../../services/users.service";
+import {UsersService} from "../../services/rest/users.service";
 import {tap} from "rxjs/operators";
 import {Diagnose} from "../../models/diagnose";
-import {DiagnosesService} from "../../services/diagnoses.service";
+import {DiagnosesService} from "../../services/rest/diagnoses.service";
 import { GenericDataSource } from 'src/app/models/generic-data-source';
 import {MatDialog} from "@angular/material/dialog";
 import {DiagnoseDetailsComponent} from "../../components/diagnose-details/diagnose-details.component";
 import {CreateDiagnoseComponent} from "../../components/create-diagnose/create-diagnose.component";
+import {NavigationService} from "../../services/navigation.service";
 
 @Component({
   selector: 'app-patient-details',
@@ -26,6 +27,7 @@ export class PatientDetailsComponent implements OnInit {
               private _diganosesService: DiagnosesService,
               private _dialogService: MatDialog,
               private _authService: AuthService,
+              private _navigator: NavigationService
 
   ) { }
 
@@ -38,7 +40,7 @@ export class PatientDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this._user = this._diganosesService.selectedUser;
+    this._user = this._navigator.selectedPatient;
     this._form = this.createForm();
     this.getUserDiagnoses();
   }

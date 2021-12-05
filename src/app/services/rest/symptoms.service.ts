@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {GenericItemService} from "./generic-item.service";
-import {SnackBarService} from "./snack-bar.service";
-import {SymptomsControllerService} from "./controllers/symptoms-controller.service";
-import {Symptom} from "../models/symptom";
+import {SnackBarService} from "../snack-bar.service";
+import {SymptomsControllerService} from "../controllers/symptoms-controller.service";
+import {Symptom} from "../../models/symptom";
 
 @Injectable({
   providedIn: 'root'

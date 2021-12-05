@@ -9,7 +9,7 @@ import {
 } from "../../components/patient-modification-dialog/patient-modification-dialog.component";
 import {ItemDetailsData} from "../../models/item-details-data";
 import {MatDialog} from "@angular/material/dialog";
-import {UsersService} from "../../services/users.service";
+import {UsersService} from "../../services/rest/users.service";
 import {CommonValidators} from "../../helpers/validators";
 
 @Component({

@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
-import {GenericControllerService} from "./controllers/generic-controller.service";
-import {SnackBarService} from "./snack-bar.service";
+import {GenericControllerService} from "../controllers/generic-controller.service";
+import {SnackBarService} from "../snack-bar.service";
 import {Observable, of} from "rxjs";
-import {CommonResponse} from "../models/response";
+import {CommonResponse} from "../../models/response";
 import {catchError, map} from "rxjs/operators";
-import {Identifiable} from "../models/Identifiable";
+import {Identifiable} from "../../models/Identifiable";
 
 enum Action {
   Add = 'Dodano',

@@ -45,6 +45,9 @@ export class LoginService {
 
   private handleLoginSuccess(user: User): void {
     this._authService.logIn(user);
+    if (!(user.isDoctor || user.isAdmin)) {
+      this._navigator.selectedPatient = user;
+    }
     this._navigator.navigateToHomeScreen();
   }
 

@@ -1,8 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {SymptomsService} from "../../services/symptoms.service";
+import {SymptomsService} from "../../services/rest/symptoms.service";
 import {Symptom} from "../../models/symptom";
-import {DiagnosesService} from "../../services/diagnoses.service";
+import {DiagnosesService} from "../../services/rest/diagnoses.service";
 import {Diagnose} from "../../models/diagnose";
 import {User} from "../../models/user";
 import {AuthService} from "../../services/auth.service";

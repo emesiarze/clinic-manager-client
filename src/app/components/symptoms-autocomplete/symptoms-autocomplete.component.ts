@@ -1,7 +1,7 @@
 import {Component, ElementRef, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import {filter, tap} from 'rxjs/operators';
 import {Symptom} from "../../models/symptom";
-import {SymptomsService} from "../../services/symptoms.service";
+import {SymptomsService} from "../../services/rest/symptoms.service";
 import {TranslatePipe} from "../../helpers/translate.pipe";
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
 import {MatChipInputEvent} from "@angular/material/chips";

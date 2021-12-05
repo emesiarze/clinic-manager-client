@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 import {GenericItemService} from "./generic-item.service";
-import {User} from "../models/user";
-import {SnackBarService} from "./snack-bar.service";
-import {UsersControllerService} from "./controllers/users-controller.service";
+import {User} from "../../models/user";
+import {SnackBarService} from "../snack-bar.service";
+import {UsersControllerService} from "../controllers/users-controller.service";
 import {Observable, of} from "rxjs";
-import {CommonResponse} from "../models/response";
+import {CommonResponse} from "../../models/response";
 import {catchError, map} from "rxjs/operators";
 
 @Injectable({

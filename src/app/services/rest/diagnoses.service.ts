@@ -1,19 +1,16 @@
 import {Injectable} from '@angular/core';
 import {GenericItemService} from "./generic-item.service";
-import {Diagnose} from "../models/diagnose";
-import {SnackBarService} from "./snack-bar.service";
-import {DiagnosesControllerService} from "./controllers/diagnoses-controller.service";
+import {Diagnose} from "../../models/diagnose";
+import {SnackBarService} from "../snack-bar.service";
+import {DiagnosesControllerService} from "../controllers/diagnoses-controller.service";
 import {Observable, of} from "rxjs";
-import {CommonResponse} from "../models/response";
+import {CommonResponse} from "../../models/response";
 import {catchError, map} from "rxjs/operators";
-import {User} from "../models/user";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DiagnosesService extends GenericItemService<Diagnose> {
-  public selectedUser: User;
-
   constructor(protected _controller: DiagnosesControllerService, protected _snackBarService: SnackBarService) {
     super(_controller, _snackBarService)
   }
