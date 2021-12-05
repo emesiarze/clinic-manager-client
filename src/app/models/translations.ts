@@ -1,4 +1,4 @@
-export const DISEASES_TRANSLATIONS = {
+export const DISEASES_TRANSLATIONS: { [key: string]: string } = {
   'Fungal_infection': 'Infekcja grzybiczna',
   'Allergy': 'Alergia',
   'GERD': 'GERD',
@@ -42,7 +42,7 @@ export const DISEASES_TRANSLATIONS = {
   'Impetigo': 'Liszajec'
 }
 
-export const SYMPTOMS_TRANSLATIONS = {
+export const SYMPTOMS_TRANSLATIONS: { [key: string]: string } = {
   'itching': 'swędzenie',
   'skin_rash': 'wysypka na skórze',
   'nodal_skin_eruptions': 'węzłowe wykwity skórne',

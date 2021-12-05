@@ -21,10 +21,10 @@
 
     <h2 title>Występujące objawy</h2>
     <mat-list>
-      <mat-list-item *ngFor="let symptom of diagnose?.symptomsExperienced">{{ symptom.name }}</mat-list-item>
+      <li *ngFor="let symptom of diagnose?.symptomsExperienced">{{ symptom.name | translate }}</li>
     </mat-list>
-
   </mat-dialog-content>
+
   <mat-dialog-actions>
       <button mat-button type="button" (click)="closeDialog()">Zamknij</button>
   </mat-dialog-actions>

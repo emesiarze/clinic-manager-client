@@ -8,8 +8,9 @@ import {CommonSnackBarComponent} from "./snack-bars/common-snack-bar/common-snac
 import {ActionSnackBarComponent} from "./snack-bars/action-snack-bar/action-snack-bar.component";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {CommonMaterialModule} from "../common-material.module";
-import { DiagnoseDetailsComponent } from './diagnose-details/diagnose-details.component';
+import {DiagnoseDetailsComponent} from './diagnose-details/diagnose-details.component';
 import {CommonFormsModule} from "../common-forms.module";
+import {TranslatePipe} from "../helpers/translate.pipe";
 
 @NgModule({
   declarations: [
@@ -20,12 +21,13 @@ import {CommonFormsModule} from "../common-forms.module";
     ErrorSnackBarComponent,
     ActionSnackBarComponent,
     DiagnoseDetailsComponent,
+    TranslatePipe,
   ],
   imports: [
     CommonModule,
     CommonMaterialModule,
     MatSnackBarModule,
-    CommonFormsModule
+    CommonFormsModule,
   ],
   exports: [
     CommonSnackBarComponent,
@@ -33,7 +35,8 @@ import {CommonFormsModule} from "../common-forms.module";
     InfoSnackBarComponent,
     WarningSnackBarComponent,
     ErrorSnackBarComponent,
-    ActionSnackBarComponent
+    ActionSnackBarComponent,
+    TranslatePipe,
   ]
 })
 export class CommonComponentsModule { }

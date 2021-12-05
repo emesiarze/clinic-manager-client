@@ -4,6 +4,7 @@ import {Diagnose} from "../../models/diagnose";
 import {AuthService} from "../../services/auth.service";
 import {Symptom} from "../../models/symptom";
 import {Disease} from "../../models/disease";
+import {TranslatePipe} from "../../helpers/translate.pipe";
 
 @Component({
   selector: 'app-diagnoses-table',
@@ -14,12 +15,13 @@ export class DiagnosesTableComponent extends GenericTableComponent<Diagnose>{
 
   constructor(private _authService: AuthService) {
     super();
+    const _translatePipe = new TranslatePipe()
     this._columnsDefinitions = [
       {
         defName: 'disease',
         displayName: 'Choroba',
         propertyName: 'disease',
-        formatter: (disease: Disease) => disease.name
+        formatter: (disease: Disease) => _translatePipe.transform(disease.name)
       },
       {
         defName: 'symptoms',

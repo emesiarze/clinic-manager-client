@@ -20,3 +20,19 @@ mat-dialog-actions {
   display: flex;
   justify-content: flex-end;
 }
+
+mat-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  li {
+    margin-left: 8px;
+    margin-right: 4px;
+
+    &:first-child {
+      list-style-type: none;
+      margin-left: 0;
+    }
+  }
+}
