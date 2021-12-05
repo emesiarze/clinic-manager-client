@@ -9,6 +9,7 @@ import {DiagnosesService} from "../../services/diagnoses.service";
 import { GenericDataSource } from 'src/app/models/generic-data-source';
 import {MatDialog} from "@angular/material/dialog";
 import {DiagnoseDetailsComponent} from "../../components/diagnose-details/diagnose-details.component";
+import {CreateDiagnoseComponent} from "../../components/create-diagnose/create-diagnose.component";
 
 @Component({
   selector: 'app-patient-details',
@@ -43,7 +44,7 @@ export class PatientDetailsComponent implements OnInit {
   }
 
   private getUserDiagnoses(): void {
-    this._diganosesService.getAllUseDiagnoses(this._user.id).pipe(
+    this._diganosesService.getAllUserDiagnoses(this._user.id).pipe(
       tap(diagnoses => {
         if (!!diagnoses) this._diagnosesDataSource.data.next(diagnoses)
       })
@@ -57,11 +58,29 @@ export class PatientDetailsComponent implements OnInit {
     });
   }
 
+  public openCreateDiagnoseDialog(): void {
+    this._dialogService.open(CreateDiagnoseComponent, {
+      data: this._user,
+      width: '50vw',
+      maxHeight: '90vh'
+    }).afterClosed()
+      .pipe(
+        tap(diagnose => {
+          this.openDiagnoseDetails(diagnose);
+          this.getUserDiagnoses();
+        }),
+      ).subscribe();
+  }
+
   public openDiagnoseDetails(diagnose: Diagnose): void {
     this._dialogService.open(DiagnoseDetailsComponent, {
       data: diagnose,
       width: '50vw',
       maxHeight: '90vh'
-    })
+    });
+  }
+
+  public isDoctor(): boolean {
+    return this._authService.isDoctor();
   }
 }

@@ -44,7 +44,7 @@ export const DISEASES_TRANSLATIONS: { [key: string]: string } = {
 
 export const SYMPTOMS_TRANSLATIONS: { [key: string]: string } = {
   'itching': 'swędzenie',
-  'skin_rash': 'wysypka na skórze',
+  'skin_rash': 'wysypka',
   'nodal_skin_eruptions': 'węzłowe wykwity skórne',
   'dischromic_patches': 'łaty dyschromowe',
   'continuous_sneezing': 'ciągłe kichanie',

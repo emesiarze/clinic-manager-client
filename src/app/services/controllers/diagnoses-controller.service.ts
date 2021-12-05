@@ -24,4 +24,8 @@ export class DiagnosesControllerService extends GenericControllerService<Diagnos
     const params = new HttpParams().appendAll({ userId: userId });
     return this._http.get<CommonResponse<Diagnose[]>>(`/api/${this._endpointUrl}/user`, { params: params});
   }
+
+  public diagnose(diagnose: Diagnose): Observable<CommonResponse<Diagnose>> {
+    return this._http.post<CommonResponse<Diagnose>>(`/api/${this._endpointUrl}/diagnose`, diagnose);
+  }
 }

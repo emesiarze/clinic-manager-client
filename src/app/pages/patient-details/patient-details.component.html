@@ -11,6 +11,9 @@
   </mat-form-field>
 
   <h2 title>Postawione diagnozy</h2>
+  <div class="button-wrapper" *ngIf="isDoctor()">
+    <button mat-stroked-button color="primary" (click)="openCreateDiagnoseDialog()">Postaw nową diagnozę</button>
+  </div>
   <app-diagnoses-table [dataSource]="diagnosesDataSource"
                        (itemClick)="openDiagnoseDetails($event)">
   </app-diagnoses-table>

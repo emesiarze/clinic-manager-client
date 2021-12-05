@@ -18,9 +18,23 @@ export class DiagnosesService extends GenericItemService<Diagnose> {
     super(_controller, _snackBarService)
   }
 
-  public getAllUseDiagnoses(userId: string): Observable<Diagnose[] | null> {
+  public getAllUserDiagnoses(userId: string): Observable<Diagnose[] | null> {
     return this._controller.getAllUserDiagnoses(userId).pipe(
       map((result: CommonResponse<Diagnose[]>) => {
+        const data = result.data;
+        !result.isSuccess ? this.handleResponseFailed(result.errorMessage) : {};
+        return data;
+      }),
+      catchError((err) => {
+        this.handleDefaultError(err);
+        return of(null);
+      }),
+    );
+  }
+
+  public diagnose(diagnose: Diagnose): Observable<Diagnose | null> {
+    return this._controller.diagnose(diagnose).pipe(
+      map((result: CommonResponse<Diagnose>) => {
         const data = result.data;
         !result.isSuccess ? this.handleResponseFailed(result.errorMessage) : {};
         return data;

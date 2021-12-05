@@ -1,26 +1,38 @@
 <mat-form-field appearance="outline">
-  <mat-label *ngIf="!!label">{{ label }}</mat-label>
-  <input #input matInput type="text" [matAutocomplete]="auto"
-    (keyup)="onKeyUp($event)" (mousedown)="refocus()" placeholder="{{ label }}">
+  <mat-label>Występujące objawy</mat-label>
+  <mat-chip-list #chipList>
+    <mat-chip *ngFor="let symptom of selectedSymptoms"
+              [selectable]="true"
+              [removable]="true"
+              (removed)="removeSymptom(symptom)">
+      {{ transformItem(symptom) }}
+      <button matChipRemove>
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </mat-chip>
 
-  <button mat-icon-button matSuffix (click)="clearSelection()">
-    <mat-icon>close</mat-icon>
-  </button>
+    <input #symptomInput
+           placeholder="Nowy objaw..."
+           [formControl]="searchQueryControl"
+           [matAutocomplete]="auto"
+           [matChipInputFor]="chipList"
+           [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+           (matChipInputTokenEnd)="addSymptom($event)">
+  </mat-chip-list>
+
+  <mat-autocomplete #auto="matAutocomplete"
+                    (optionSelected)="selected($event)"
+                    [displayWith]="transformItem">
+    <mat-option *ngFor="let symptom of filteredSymptoms" [value]="symptom">
+      {{ transformItem(symptom) }}
+    </mat-option>
+
+    <mat-option *ngIf="queryTooShort">
+      Wpisz więcej znaków
+    </mat-option>
+
+    <mat-option *ngIf="!!filteredSymptoms && filteredSymptoms.length === 0 && !queryTooShort">
+      Nie znaleziono elementów
+    </mat-option>
+  </mat-autocomplete>
 </mat-form-field>
-
-<mat-autocomplete #auto="matAutocomplete" [displayWith]="transformItem">
-  <mat-option *ngIf="queryTooShort">
-    Wpisz więcej znaków
-  </mat-option>
-
-  <mat-option *ngIf="!!filteredSymptoms && filteredSymptoms.length === 0 && !queryTooShort">
-    Nie znaleziono elementów
-  </mat-option>
-
-  <mat-option *ngFor="let item of filteredSymptoms" [value]="item" (click)="onSelectionChange(item)">
-    <span>{{ transformItem(item) }}</span>
-    <button mat-icon-button>
-      <mat-icon>add</mat-icon>
-    </button>
-  </mat-option>
-</mat-autocomplete>

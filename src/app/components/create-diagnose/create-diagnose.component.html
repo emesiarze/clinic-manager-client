@@ -1,1 +1,16 @@
-<app-symptoms-autocomplete></app-symptoms-autocomplete>
+<form>
+  <mat-card-title>
+    <h1>Nowa diagnoza</h1>
+  </mat-card-title>
+
+  <mat-dialog-content>
+
+    <h2 title>Występujące objawy</h2>
+    <app-symptoms-autocomplete (symptomsChanged)="updateSymptoms($event)"></app-symptoms-autocomplete>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-button type="button" (click)="closeDialog()">Zamknij</button>
+    <button mat-raised-button type="button" (click)="diagnose()" color="primary">Diagnozuj</button>
+  </mat-dialog-actions>
+</form>

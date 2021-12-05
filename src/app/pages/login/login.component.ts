@@ -4,7 +4,9 @@ import {LoginService} from 'src/app/services/login.service';
 import {filter, switchMap} from "rxjs/operators";
 import {User} from "../../models/user";
 import {Observable} from "rxjs";
-import {PatientModificationDialogComponent} from "../../components/patient-modification-dialog/patient-modification-dialog.component";
+import {
+  PatientModificationDialogComponent
+} from "../../components/patient-modification-dialog/patient-modification-dialog.component";
 import {ItemDetailsData} from "../../models/item-details-data";
 import {MatDialog} from "@angular/material/dialog";
 import {UsersService} from "../../services/users.service";
