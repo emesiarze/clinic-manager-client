@@ -43,6 +43,9 @@ export class PatientModificationDialogComponent implements OnInit {
   }
 
   private buildForm(): FormGroup {
+    const passwordValidators = this._create ? [Validators.required, CommonValidators.passwordValidator] : [CommonValidators.passwordValidator];
+    console.log(passwordValidators);
+
     return this._fb.group({
       login: [
         { value: this._user?.login || undefined, disabled: !this._create },
@@ -50,8 +53,8 @@ export class PatientModificationDialogComponent implements OnInit {
         [CommonValidators.loginAsyncValidator(this._loginService)]
       ],
       fullName: [this._user?.fullName || undefined, [Validators.required]],
-      password: [this._user?.password || undefined, [Validators.required, CommonValidators.passwordValidator]],
-      idDoctor: this._user?.isDoctor || false
+      password: [this._user?.password || undefined, passwordValidators],
+      isDoctor: this._user?.isDoctor || false
     });
   }
 
@@ -60,7 +63,8 @@ export class PatientModificationDialogComponent implements OnInit {
       id: this._user?.id,
       fullName: this._form.get('fullName')?.value,
       login: this._form.get('login')?.value,
-      isDoctor: this._form.get('idDoctor')?.value
+      isDoctor: this._form.get('isDoctor')?.value,
+      isAdmin: false
     } as User;
 
     this._create ? user.password = this._form.get('password')?.value : {}
